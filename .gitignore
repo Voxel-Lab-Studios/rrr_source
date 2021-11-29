@@ -1,0 +1,7 @@
+db/
+*.dat
+*.dat_old
+*.txt
+*.jpeg
+world_resource_packs.json
+world_behavior_packs.json

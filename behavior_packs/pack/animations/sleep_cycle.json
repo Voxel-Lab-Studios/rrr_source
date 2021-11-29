@@ -1,0 +1,14 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lab.sleep_cycle": { 
+			"loop": false,
+			"animation_length": 1.2,
+			"timeline": {
+				"0.0": "/tellraw @a {\"rawtext\":[{\"translate\" : \"action.sleep\"}]}",
+				"1.0": ["/time set sunrise","/weather clear"],
+				"1.1": "/time add 2000"
+			}
+		}
+	}
+}

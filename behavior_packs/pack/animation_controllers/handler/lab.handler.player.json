@@ -1,0 +1,33 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+		"controller.animation.lab.player.root": {
+			"initial_state" : "state_filter",
+			"states": {
+				"controllers": {
+					"animations": [
+						"lab.player.items.controller",
+						"lab.player.lifetime.controller",
+						"lab.player.input.controller",
+						"lab.player.jump.controller",
+						"lab.player.movement.controller",
+						"lab.sleep.c",
+						"lab.mob.death.c"
+                    ],
+					"transitions": [
+						{
+							"state_filter": "query.all_animations_finished"
+						}
+					]
+				},
+				"state_filter": {
+					"transitions": [
+						{
+							"controllers": "(1.0)"
+						}
+					]
+				}
+			}
+		} 
+    }
+}

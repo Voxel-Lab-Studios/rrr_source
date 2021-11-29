@@ -1,0 +1,22 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.lab.mob.death": {
+			"initial_state": "init",
+			"states": {
+				"run": {
+					"on_entry": [
+						"/function root/game/mob_death"
+					]
+				},
+				"init": {
+					"transitions": [
+						{
+							"run": "!q.is_alive || q.death_ticks > 0"
+						}
+					]
+				}
+			}
+		}
+	}
+}

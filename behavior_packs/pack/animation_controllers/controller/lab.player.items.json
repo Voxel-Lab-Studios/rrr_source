@@ -1,0 +1,40 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+		"controller.animation.lab.player.items": {
+			"initial_state" : "state_filter",
+			"states": {
+				"swing_item": {
+					"transitions": [
+						{
+							"state_filter": "(1.0)"
+						}
+					],
+					"on_entry": [
+						"/say left click"
+					]
+				},
+				"use_item": {
+					"transitions": [
+						{
+							"state_filter": "(1.0)"
+						}
+					],
+					"on_entry": [
+						"/say right click"
+					]
+				},
+				"state_filter": {
+					"transitions": [
+						{
+							"swing_item": "query.death_ticks == 0 && variable.attack_time > 0.5 && query.get_equipped_item_name == 'name'"
+						},
+						{
+							"use_item": "query.death_ticks == 0 && query.is_using_item && query.get_equipped_item_name == 'name'"
+						}
+					]
+				}
+			}
+		}
+    }
+}

@@ -1,2 +1,8 @@
 # rrr_source
-Redrock Source Code
+**Authors:** 
+
+Donthedev & HeroWeather
+
+**Credits**
+
+[Coptaine: Damage Indicator](https://mcpedl.com/damage-indicator-addon/ "Coptaine's Damage Indicator")
