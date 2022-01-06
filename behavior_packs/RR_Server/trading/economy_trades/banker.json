@@ -1,0 +1,28 @@
+{
+	"tiers": [
+		{
+			"groups": [
+				{
+					"trades": [
+						{
+							"wants": [
+								{
+									"item": "lab:coin",
+									"quantity": 32
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 1
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						}
+					]
+				}
+			]
+		}
+	]
+}

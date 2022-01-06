@@ -1,0 +1,50 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+		"controller.animation.lab.player.items": {
+			"initial_state" : "state_filter",
+			"states": {
+				"swing.magic_mirror": {
+					"transitions": [{"state_filter": "q.death_ticks == 0 && variable.attack_time == 0"}],
+					"on_entry": ["/function root/game/magic_mirror"]
+				},
+				"swing.magic_mirror.mounted": {
+					"transitions": [{"state_filter": "q.death_ticks == 0 && variable.attack_time == 0"}],
+					"on_entry": ["/function root/game/magic_mirror.mounted"],
+					"on_exit": ["/ride @s start_riding @e[r=3,family=mount,c=1]"]
+				},
+				"hold.daylight_detector": {
+					"transitions": [{"state_filter": "q.death_ticks == 0 && q.get_equipped_item_name != 'daylight_detector'"}],
+					"on_entry": ["/tag @s add ui.l_level"],"on_exit": ["/tag @s remove ui.l_level"]
+				},
+				"hold.compass": {
+					"transitions": [{"state_filter": "q.death_ticks == 0 && q.get_equipped_item_name != 'compass'"}],
+					"on_entry": ["/tag @s add ui.biome"],"on_exit": ["/tag @s remove ui.biome"]
+				},
+				"use.item": {
+					"transitions": [{"state_filter": "!q.is_using_item"}],
+					"on_entry": ["/say null" ]
+				},
+				"state_filter": {
+					"transitions": [
+						{
+							"swing.magic_mirror": "q.death_ticks == 0 && variable.attack_time > 0.5 && q.get_equipped_item_name == 'magic_mirror' && !q.is_riding"
+						},
+						{
+							"swing.magic_mirror.mounted": "q.death_ticks == 0 && variable.attack_time > 0.5 && q.get_equipped_item_name == 'magic_mirror' && q.is_riding"
+						},
+						{
+							"hold.daylight_detector": "q.death_ticks == 0 && q.get_equipped_item_name == 'daylight_detector'"
+						},
+						{
+							"hold.compass": "q.death_ticks == 0 && q.get_equipped_item_name == 'compass'"
+						},
+						{
+							"use.item": "q.death_ticks == 0 && q.is_using_item && q.get_equipped_item_name == 'chocho_milk'"
+						}
+					]
+				}
+			}
+		}
+    }
+}

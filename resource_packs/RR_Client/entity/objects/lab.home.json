@@ -1,0 +1,26 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "lab:home",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "skeleton"
+      },
+      "textures": {
+        "default": "textures/lab/entity/crystal"
+      },
+      "geometry": {
+        "default": "geometry.lab.crystal"
+      },
+      "render_controllers": [
+        "controller.render.lab.remove_hurt"
+      ],
+      "spawn_egg": {
+        "texture": "lab:crystal"
+      },
+      "scripts": {"animate": ["block_grid"]},
+      "animations": {"block_grid": "animation.lab.block_grid"}
+    }
+  }
+}

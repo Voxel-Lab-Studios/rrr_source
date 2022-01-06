@@ -1,0 +1,73 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.lab.icon.scene_fade": {
+      "geometry": "Geometry.icon_scene_fade",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.icon_scene_fade" ],
+      "part_visibility": [
+        { "blackout_box": "variable.icon_scene_fade" },
+        { "icon_scene_fade": "variable.icon_scene_fade" }
+      ]
+    },
+    "controller.render.lab.icon.scene_hold": {
+      "geometry": "Geometry.icon_scene_hold",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.icon_scene_hold" ],
+      "part_visibility": [
+        { "blackout_box": "variable.icon_scene_hold" },
+        { "icon_scene_hold": "variable.icon_scene_hold" }
+      ]
+    },
+    "controller.render.lab.icon.scene_overlay": {
+      "geometry": "Geometry.icon_scene_overlay",
+      "materials": [ { "*": "Material.transparent" } ],
+      "textures": [ "Texture.icon_scene_overlay" ],
+      "part_visibility": [
+        { "blackout_box": "variable.icon_scene_overlay" },
+        { "icon_scene_overlay": "variable.icon_scene_overlay" }
+      ]
+    },
+    "controller.render.lab.icon.scene_title": {
+      "geometry": "Geometry.icon_scene_title",
+      "materials": [ { "*": "Material.trans_true" } ],
+      "textures": [ "Texture.icon_scene_title" ],
+      "part_visibility": [
+        { "blackout_box": "variable.icon_scene_title" },
+        { "icon_scene_title": "variable.icon_scene_title" }
+      ]
+    },
+    "controller.render.lab.icon.exclaim": {
+      "geometry": "Geometry.icon_exclaim",
+      "materials": [ { "*": "Material.glow" } ],
+      "textures": [ "Texture.icon_exclaim" ],
+      "part_visibility": [
+        { "icon_exclaim": "variable.icon_exclaim && !query.is_invisible" }
+      ]
+    },
+    "controller.render.lab.icon.question": {
+      "geometry": "Geometry.icon_question",
+      "materials": [ { "*": "Material.glow" } ],
+      "textures": [ "Texture.icon_question" ],
+      "part_visibility": [
+        { "icon_question": "variable.icon_question && !query.is_invisible" }
+      ]
+    },
+    "controller.render.lab.icon.shop": {
+      "geometry": "Geometry.icon_shop",
+      "materials": [ { "*": "Material.glow" } ],
+      "textures": [ "Texture.icon_shop" ],
+      "part_visibility": [
+        { "icon_shop": "variable.icon_shop && !query.is_invisible" }
+      ]
+    },
+    "controller.render.lab.icon.talk": {
+      "geometry": "Geometry.icon_talk",
+      "materials": [ { "*": "Material.glow" } ],
+      "textures": [ "Texture.icon_talk" ],
+      "part_visibility": [
+        { "icon_talk": "variable.icon_talk && !query.is_invisible" }
+      ]
+    }
+  }
+}

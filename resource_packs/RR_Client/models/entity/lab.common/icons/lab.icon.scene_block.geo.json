@@ -1,0 +1,103 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.lab.icon.scene.block",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 17,
+				"visible_bounds_height": 18,
+				"visible_bounds_offset": [0, 3, 0]
+			},
+			"bones": [
+				{
+					"name": "labicon",
+					"pivot": [0, 0, -27]
+				},
+				{
+					"name": "blackout_box",
+					"parent": "labicon",
+					"pivot": [0, 27.6, 7.75],
+					"mirror": true
+				},
+				{
+					"name": "block_box",
+					"parent": "blackout_box",
+					"pivot": [0, 90.6, 8.7],
+					"cubes": [
+						{"origin": [-100, -100, -100], "size": [200, 200, 200], "uv": [0, 0]},
+						{"origin": [-87.5, 1.5, -87.5], "size": [175, 175, 175], "uv": [0, 0]},
+						{"origin": [-75, -75, -75], "size": [150, 150, 150], "uv": [0, 0]},
+						{"origin": [-62.5, -62.5, -62.5], "size": [125, 125, 125], "uv": [0, 0]},
+						{"origin": [-50, -50, -50], "size": [100, 100, 100], "uv": [0, 0]},
+						{"origin": [-37.5, -7.5, -37.5], "size": [75, 75, 75], "uv": [0, 0]},
+						{"origin": [-25, 5, -25], "size": [50, 50, 50], "uv": [0, 0]},
+						{"origin": [-12.5, 15.5, -12.5], "size": [25, 25, 25], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "labicon",
+					"pivot": [-2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightLeg1",
+					"parent": "rightLeg",
+					"pivot": [-2, 6, -27]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "labicon",
+					"pivot": [2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftLeg1",
+					"parent": "leftLeg",
+					"pivot": [2, 6, -27]
+				},
+				{
+					"name": "rightArm",
+					"parent": "labicon",
+					"pivot": [-5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightitem",
+					"parent": "rightArm",
+					"pivot": [-8, 14, 0]
+				},
+				{
+					"name": "rightSleeve",
+					"parent": "rightitem",
+					"pivot": [-7, 22, 0]
+				},
+				{
+					"name": "leftArm",
+					"parent": "labicon",
+					"pivot": [5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftArm1",
+					"parent": "leftArm",
+					"pivot": [6, 18, -25.5]
+				},
+				{
+					"name": "head",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				},
+				{
+					"name": "body",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				}
+			]
+		}
+	]
+}

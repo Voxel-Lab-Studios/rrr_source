@@ -1,0 +1,12 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:item": {
+		"description": {
+			"identifier": "lab:coin"
+		},
+		"components": {
+			"minecraft:render_offsets": "hand",
+			"minecraft:icon": "lab:coin"
+		}
+	}
+}

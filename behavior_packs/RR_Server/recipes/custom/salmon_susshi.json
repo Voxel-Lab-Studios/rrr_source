@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "lab:salmon_susshi"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "RKR",
+      "KFK",
+      "RKR"
+    ],
+    "key": {
+      "R": {
+        "item": "lab:rice_bowl"
+      },
+      "K": {
+        "item": "minecraft:kelp"
+      },
+      "F": {
+        "item": "minecraft:salmon"
+      }
+    },
+    "result": {
+      "item": "lab:salmon_susshi",
+      "count": 2
+    }
+  }
+}

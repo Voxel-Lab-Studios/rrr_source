@@ -1,0 +1,96 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.lab.icon.scene.overlay",
+				"texture_width": 512,
+				"texture_height": 512,
+				"visible_bounds_width": 20,
+				"visible_bounds_height": 12,
+				"visible_bounds_offset": [0, 3, 0]
+			},
+			"bones": [
+				{
+					"name": "labicon",
+					"pivot": [0, 0, -27]
+				},
+				{
+					"name": "blackout_box",
+					"parent": "labicon",
+					"pivot": [0, 27.6, 7.75],
+					"mirror": true
+				},
+				{
+					"name": "bottom_slider",
+					"parent": "blackout_box",
+					"pivot": [0.575, 27, 12.825],
+					"cubes": [
+						{"origin": [-74.425, -10.5, 12.825], "size": [150, 75, 0], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "labicon",
+					"pivot": [-2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightLeg1",
+					"parent": "rightLeg",
+					"pivot": [-2, 6, -27]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "labicon",
+					"pivot": [2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftLeg1",
+					"parent": "leftLeg",
+					"pivot": [2, 6, -27]
+				},
+				{
+					"name": "rightArm",
+					"parent": "labicon",
+					"pivot": [-5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightitem",
+					"parent": "rightArm",
+					"pivot": [-8, 14, 0]
+				},
+				{
+					"name": "rightSleeve",
+					"parent": "rightitem",
+					"pivot": [-7, 22, 0]
+				},
+				{
+					"name": "leftArm",
+					"parent": "labicon",
+					"pivot": [5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftArm1",
+					"parent": "leftArm",
+					"pivot": [6, 18, -25.5]
+				},
+				{
+					"name": "head",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				},
+				{
+					"name": "body",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,52 @@
+{
+	"format_version": "1.10.0",
+	"geometry.lab.icon.talk": {
+		"texturewidth": 16,
+		"textureheight": 16,
+		"visible_bounds_width": 2,
+		"visible_bounds_height": 4,
+		"visible_bounds_offset": [0, 1, 0],
+		"bones": [
+			{
+				"name": "labicon",
+				"pivot": [0, 37, 0],
+				"cubes": [
+					{"origin": [-4, 37, 0], "size": [7, 3, 1], "uv": [0, 0]}
+				]
+			},
+			{
+				"name": "bottom",
+				"parent": "labicon",
+				"pivot": [3, 37, 0],
+				"rotation": [0, 0, 27],
+				"cubes": [
+					{"origin": [1, 35.99999, 0], "size": [2, 1, 1], "uv": [0, 4]}
+				]
+			},
+			{
+				"name": "dot1",
+				"parent": "labicon",
+				"pivot": [0, 40, 0],
+				"cubes": [
+					{"origin": [1, 38, 0], "size": [1, 1, 1], "uv": [0, 6]}
+				]
+			},
+			{
+				"name": "dot2",
+				"parent": "labicon",
+				"pivot": [0, 40, 0],
+				"cubes": [
+					{"origin": [-1, 38, 0], "size": [1, 1, 1], "uv": [3, 7]}
+				]
+			},
+			{
+				"name": "dot3",
+				"parent": "labicon",
+				"pivot": [0, 40, 0],
+				"cubes": [
+					{"origin": [-3, 38, 0], "size": [1, 1, 1], "uv": [5, 5]}
+				]
+			}
+		]
+	}
+}

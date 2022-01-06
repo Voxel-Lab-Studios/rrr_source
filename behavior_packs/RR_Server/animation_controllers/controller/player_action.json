@@ -1,0 +1,208 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.lab.player.lifetime": {
+			"initial_state": "initialization",
+			"states": {
+				"initialization": {
+					"transitions": [
+						{
+							"has_died": "!query.is_alive"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.dead"
+					]
+				},
+				"has_died": {
+					"on_exit": [
+						"/function root/components/action/player.on_alive"
+					],
+					"transitions": [
+						{
+							"initialization": "query.is_alive"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.lab.player.input": {
+			"initial_state": "init",
+			"states": {
+				"left_click": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.attack"
+					]
+				},
+				"right_click": {
+					"transitions": [
+						{
+							"init": "!query.is_using_item"
+						}
+					],
+					"on_entry": [
+						"/function root/components/action/player.using_item"
+					],
+					"on_exit": [
+						"/function root/components/action/player.using_item.not"
+					]
+				},
+				"init": {
+					"transitions": [
+						{
+							"left_click": "variable.attack_time > 0.0"
+						},
+						{
+							"right_click": "query.is_using_item"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.lab.player.idle": {
+			"initial_state": "init",
+			"states": {
+				"idle": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.idle"
+					]
+				},
+				"init": {
+					"transitions": [
+						{
+							"idle": "!query.is_moving"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.lab.player.jump": {
+			"initial_state": "init",
+			"states": {
+				"jump": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.jumping"
+					]
+				},
+				"init": {
+					"transitions": [
+						{
+							"jump": "query.is_jumping"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.lab.player.moving": {
+			"initial_state": "init",
+			"states": {
+				"moving": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_entry": [
+						"/function root/components/action/player.moving"
+					]
+				},
+				"sprinting": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.sprinting"
+					]
+				},
+				"sneaking": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.sneaking"
+					]
+				},
+				"swimming": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_exit": [
+						"/function root/components/action/player.swimming"
+					]
+				},
+				"idle": {
+					"transitions": [
+						{
+							"init": "(0.1)"
+						}
+					],
+					"on_entry": [
+						"/function root/components/action/player.idle"
+					]
+				},
+				"init": {
+					"transitions": [
+						{
+							"moving": "query.is_moving && !query.is_sprinting"
+						},
+						{
+							"sprinting": "query.is_sprinting"
+						},
+						{
+							"sneaking": "query.is_sneaking"
+						},
+						{
+							"swimming": "query.is_in_water"
+						},
+						{
+							"idle": "!query.is_moving"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.lab.player.sleeping": {
+			"initial_state": "inactive",
+			"states": {
+				"inactive": {
+					"transitions": [
+						{
+							"active": "query.is_sleeping"
+						}
+					]
+				},
+				"active": {
+					"animations": [
+						"lab.sleep_cycle"
+					],
+					"transitions": [
+						{
+							"inactive": "!query.is_sleeping"
+						}
+					]
+				}
+			}
+		}
+	}
+}

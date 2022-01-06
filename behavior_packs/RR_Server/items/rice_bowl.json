@@ -1,0 +1,16 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "lab:rice_bowl"
+    },
+
+    "components": {
+      "minecraft:use_duration": 45,
+      "minecraft:food": {
+        "nutrition": 1,
+        "saturation_modifier": "low"
+      }
+    }
+  }
+}

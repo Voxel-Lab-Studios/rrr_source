@@ -1,0 +1,252 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "lab:npc.banker",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "scripts": {
+        "animate": []
+      },
+      "animations": {}
+    },
+    "component_groups": {
+      "lab:clear_components":{
+        "minecraft:variant":{"value": 0}
+      },
+      "lab:add.icon.exclaim":{
+        "minecraft:variant":{"value": 5}
+      },
+      "lab:add.icon.question":{
+        "minecraft:variant":{"value": 6}
+      },
+      "lab:add.icon.shop":{
+        "minecraft:variant":{"value": 7}
+      },
+      "lab:add.icon.talk":{
+        "minecraft:variant":{"value": 8}
+      },
+      "lab:say_hello": {
+        "minecraft:variant":{"value": 9}
+      },
+      "lab:is_acting.stage00": {
+        "minecraft:variant":{"value": 10}
+      },
+      "lab:is_not_acting": {
+        
+      }
+    },
+    "components": {
+      //General
+      "minecraft:economy_trade_table": {
+        "display_name": "entity.banker.name",
+        "table": "trading/economy_trades/banker.json",
+        "new_screen": true
+      },
+      "minecraft:type_family": {
+        "family": [
+          "npc",
+          "no_effect"
+        ]
+      },
+      "minecraft:nameable": {
+        "always_show": false,
+        "allow_name_tag_renaming": false
+      },
+      "minecraft:health": {
+        "value": 0.5,
+        "max": 0.5
+      },
+      "minecraft:physics": {},
+      "minecraft:collision_box": {
+        "width": 0.5,
+        "height": 1.7
+      },
+      "minecraft:attack": {
+        "damage": 0
+      },
+      "minecraft:follow_range": {
+        "value": 100,
+        "max": 100
+      },
+      //Movement
+      "minecraft:movement.basic": {},
+      "minecraft:can_climb": {},
+      "minecraft:annotation.open_door": {},
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:jump.static": {
+        "jump_power": 0.55
+      },
+      "minecraft:navigation.generic": {
+        "can_path_over_water": false,
+        "can_walk": true,
+        "can_path_from_air": true
+      },
+      //Filters
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "cause": "all",
+          "deals_damage": false
+        }
+      },
+      //Behaviors
+      "minecraft:behavior.rise_to_liquid_level": {
+        "priority": 0,
+        "liquid_y_offset": 0.25,
+        "rise_delta": 0.01,
+        "sink_delta": 0.01
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 1,
+        "reselect_targets": true,
+        "target_search_height": 100,
+        "within_radius": 100,
+        "max_dist": 100,
+        "must_see": false,
+        "entity_types": [
+          {
+            "filters": [
+              {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "path.dummy"
+                  }
+                ]
+              }
+            ],
+            "max_dist": 100
+          }
+        ]
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 2,
+        "speed_multiplier": 1
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 3,
+        "look_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [
+                "lab:not_acting",
+                "lab:clear_components"
+              ]
+            }
+          }
+        ]
+      },
+      "lab:say_hello_event": {
+        "add": {
+          "component_groups": [
+            "lab:say_hello"
+          ]
+        }
+      },
+      "lab:stop_hello_event": {
+        "remove": {
+          "component_groups": [
+            "lab:say_hello"
+          ]
+        }
+      },
+      "lab:start_acting.stage00_event": {
+        "add": {
+          "component_groups": [
+            "lab:is_acting.stage00"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "lab:is_not_acting"
+          ]
+        }
+      },
+      "lab:stop_acting_event": {
+        "add": {
+          "component_groups": [
+            "lab:is_not_acting"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "lab:is_acting.stage00"
+          ]
+        }
+      },
+      "lab:add.icon.exclaim_event": {
+        "remove": {
+          "component_groups": [
+            "lab:add.icon.question",
+            "lab:add.icon.shop",
+            "lab:add.icon.talk",
+            "lab:clear_components"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "lab:add.icon.exclaim"
+          ]
+        }
+      },
+      "lab:add.icon.question_event": {
+        "remove": {
+          "component_groups": [
+            "lab:add.icon.exclaim",
+            "lab:add.icon.shop",
+            "lab:add.icon.talk",
+            "lab:clear_components"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "lab:add.icon.question"
+          ]
+        }
+      },
+      "lab:add.icon.shop_event": {
+        "remove": {
+          "component_groups": [
+            "lab:add.icon.exclaim",
+            "lab:add.icon.question",
+            "lab:add.icon.talk",
+            "lab:clear_components"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "lab:add.icon.shop"
+          ]
+        }
+      },
+      "lab:add.icon.talk_event": {
+        "remove": {
+          "component_groups": [
+            "lab:add.icon.exclaim",
+            "lab:add.icon.question",
+            "lab:add.icon.shop",
+            "lab:clear_components"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "lab:add.icon.talk"
+          ]
+        }
+      }
+    }
+  }
+}

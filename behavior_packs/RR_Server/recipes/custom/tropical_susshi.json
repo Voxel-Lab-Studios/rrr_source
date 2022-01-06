@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "lab:tropical_susshi"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "RKR",
+      "KFK",
+      "RKR"
+    ],
+    "key": {
+      "R": {
+        "item": "lab:rice_bowl"
+      },
+      "K": {
+        "item": "minecraft:kelp"
+      },
+      "F": {
+        "item": "minecraft:tropical_fish"
+      }
+    },
+    "result": {
+      "item": "lab:tropical_susshi",
+      "count": 2
+    }
+  }
+}

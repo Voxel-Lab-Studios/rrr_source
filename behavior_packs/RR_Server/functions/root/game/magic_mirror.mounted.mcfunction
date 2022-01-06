@@ -1,0 +1,26 @@
+scoreboard players add @s magic.mirror 1
+execute @s[scores={magic.mirror=1..1}] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:spawn]
+execute @s[scores={magic.mirror=1..1}] ~ ~ ~ tp  @e[type=lab:spawn]
+
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=xXxjprezxXx] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=xXxjprezxXx]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=RobotRobert2003] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=RobotRobert2003]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=TrixelzX] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=TrixelzX]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=FIREUTIR] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=FIREUTIR]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name="Hero Wether"] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name="Hero Wether"]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=donthedev] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=donthedev]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=GOATpelf] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=GOATpelf]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=CaliFerr] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=CaliFerr]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name="BB Eros"] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name="BB Eros"]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=ColeTheImpaler] ~ ~ ~ tp @e[r=2,family=mount,c=1] @e[type=lab:home,name=ColeTheImpaler]
+
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=xXxjprezxXx] ~ ~ ~ tp  @e[type=lab:home,name=xXxjprezxXx]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=RobotRobert2003] ~ ~ ~ tp  @e[type=lab:home,name=RobotRobert2003]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=TrixelzX] ~ ~ ~ tp  @e[type=lab:home,name=TrixelzX]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=FIREUTIR] ~ ~ ~ tp  @e[type=lab:home,name=FIREUTIR]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name="Hero Wether"] ~ ~ ~ tp  @e[type=lab:home,name="Hero Wether"]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=donthedev] ~ ~ ~ tp  @e[type=lab:home,name=donthedev]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=GOATpelf] ~ ~ ~ tp  @e[type=lab:home,name=GOATpelf]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=CaliFerr] ~ ~ ~ tp  @e[type=lab:home,name=CaliFerr]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name="BB Eros"] ~ ~ ~ tp  @e[type=lab:home,name="BB Eros"]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ /execute @s[name=ColeTheImpaler] ~ ~ ~ tp  @e[type=lab:home,name=ColeTheImpaler]
+execute @s[scores={magic.mirror=2..2}] ~ ~ ~ scoreboard players reset @s magic.mirror

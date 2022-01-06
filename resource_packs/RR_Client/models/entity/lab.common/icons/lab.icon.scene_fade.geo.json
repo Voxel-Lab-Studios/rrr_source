@@ -1,0 +1,104 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.lab.icon.scene.fade",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 10,
+				"visible_bounds_height": 9,
+				"visible_bounds_offset": [0, 2.5, 0]
+			},
+			"bones": [
+				{
+					"name": "labicon",
+					"pivot": [0, 0, -27]
+				},
+				{
+					"name": "blackout_box",
+					"parent": "labicon",
+					"pivot": [0, 27.6, 7.75],
+					"mirror": true
+				},
+				{
+					"name": "bottom_slider",
+					"parent": "blackout_box",
+					"pivot": [0, -35.4, 7.7],
+					"cubes": [
+						{"origin": [-46.5, -35.4, 7.2], "size": [93, 63, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "top_slider",
+					"parent": "blackout_box",
+					"pivot": [0, 90.6, 8.7],
+					"cubes": [
+						{"origin": [-46.5, 27.6, 7.2], "size": [93, 63, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "labicon",
+					"pivot": [-2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightLeg1",
+					"parent": "rightLeg",
+					"pivot": [-2, 6, -27]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "labicon",
+					"pivot": [2, 12, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftLeg1",
+					"parent": "leftLeg",
+					"pivot": [2, 6, -27]
+				},
+				{
+					"name": "rightArm",
+					"parent": "labicon",
+					"pivot": [-5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "rightitem",
+					"parent": "rightArm",
+					"pivot": [-8, 14, 0]
+				},
+				{
+					"name": "rightSleeve",
+					"parent": "rightitem",
+					"pivot": [-7, 22, 0]
+				},
+				{
+					"name": "leftArm",
+					"parent": "labicon",
+					"pivot": [5, 21.5, -27],
+					"mirror": true
+				},
+				{
+					"name": "leftArm1",
+					"parent": "leftArm",
+					"pivot": [6, 18, -25.5]
+				},
+				{
+					"name": "head",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				},
+				{
+					"name": "body",
+					"parent": "labicon",
+					"pivot": [0, 24, -27],
+					"mirror": true
+				}
+			]
+		}
+	]
+}

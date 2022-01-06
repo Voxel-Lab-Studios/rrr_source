@@ -1,0 +1,94 @@
+pack.name=Redrock Addon Pack
+pack.description=Voxel Lab Studios | v.0.4.5
+action.sleep=Night Skipped
+
+score.level=§2Level: %2 
+score.death=§4Deaths: %2 
+score.kills=§5Kills: %2 
+score.quest=§6Quests: %2 
+
+check.l_level=§eL.L: %2 
+
+check.biome0=§3Biome:§e Beach 
+check.biome1=§3Biome:§6 Desert 
+check.biome2=§3Biome:§2 Extreme Hills 
+check.biome3=§3Biome:§a Flat 
+check.biome4=§3Biome:§2 Forest 
+check.biome5=§3Biome:§1 Ice 
+check.biome6=§3Biome:§a Jungle 
+check.biome7=§3Biome:§6 Mesa 
+check.biome8=§3Biome:§5 Mushroom Island 
+check.biome9=§3Biome:§9 Ocean 
+check.biome10=§3Biome:§a Plain 
+check.biome11=§3Biome:§9 River 
+check.biome12=§3Biome:§6 Savanna 
+check.biome13=§3Biome:§8 Stone Beach 
+check.biome14=§3Biome:§2 Swamp 
+check.biome15=§3Biome:§b Taiga 
+check.biome16=§3Biome:§f The End 
+check.biome17=§3Biome:§c The nether 
+
+ann.level1= §3is now level: §61
+ann.level2= §3is now level: §62
+ann.level3= §3is now level: §63
+ann.level4= §3is now level: §64
+ann.level5= §3is now level: §65
+ann.level6= §3is now level: §66
+ann.level7= §3is now level: §67
+ann.level8= §3is now level: §68
+ann.level9= §3is now level: §69
+ann.level10= §3is now level: §610
+ann.level11= §3is now level: §611
+ann.level12= §3is now level: §612
+ann.level13= §3is now level: §613
+ann.level14= §3is now level: §614
+ann.level15= §3is now level: §615
+ann.level16= §3is now level: §616
+ann.level17= §3is now level: §617
+ann.level18= §3is now level: §618
+ann.level19= §3is now level: §619
+ann.level20= §3is now level: §620
+ann.level21= §3is now level: §621
+ann.level22= §3is now level: §622
+ann.level23= §3is now level: §623
+ann.level24= §3is now level: §624
+ann.level25= §3is now level: §625
+ann.level26= §3is now level: §626
+ann.level27= §3is now level: §627
+ann.level28= §3is now level: §628
+ann.level29= §3is now level: §629
+ann.level30= §3is now level: §630
+game.idle= §6Is Idle
+
+item.lab:coin.name=Coin
+item.lab:magic_mirror.name=Magic Mirror
+item.lab:tropical_susshi.name=Tropical Sushi
+item.lab:cod_susshi.name=Cod Sushi
+item.lab:salmon_susshi.name=Salmon Sushi
+item.lab:puff_susshi.name=Pufferfish Sushi
+item.lab:rice_bowl.name=Rice Bowl
+entity.banker.name.name=Banker
+entity.relic.name.name=Relic Trader
+
+entity.lab:mega_torch.small.name=Small Mega Torch
+entity.lab:mega_torch.medium.name=Medium Mega Torch
+entity.lab:mega_torch.large.name=:Large Mega Torch
+entity.lab:home.name=Set Home Marker
+entity.lab:spawn.name=SpawnMarker
+item.spawn_egg.entity.lab:mega_torch.small.name=Small Mega Torch
+item.spawn_egg.entity.lab:mega_torch.medium.name=Medium Mega Torch
+item.spawn_egg.entity.lab:mega_torch.large.name=Large Mega Torch
+item.spawn_egg.entity.lab:home.name=Set Home Marker
+
+entity.lab:npc.banker.name=Banker
+entity.lab:npc.relic.name=Relic Trader
+
+choice.init00=§l§6[!]§rAre you sure you want to reset? Run §l/function/yes §nto §l§2confirm §ror §n§lfunction/no §rto §l§4cancel.
+choice.init01=§l§6[!]§r§6Initalizing: §rGame reset.
+
+choice.export00=§l§6[!]§rRun §l/function/yes §nto §l§2Enable §ror §n§lfunction/no §rto §l§4Disable: §6Export Mode.
+choice.export01=§l§6[!]§r§6Export Mode Enabled.
+choice.export02=§l§6[!]§r§6Export Mode Disabled.
+
+choice.common.yes=§l§2Confirmed
+choice.common.no=§l§4Canceled

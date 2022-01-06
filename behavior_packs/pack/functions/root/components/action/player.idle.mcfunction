@@ -1,1 +1,0 @@
-## Idle Output (Default State)

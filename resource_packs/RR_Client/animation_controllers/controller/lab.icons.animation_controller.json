@@ -1,0 +1,116 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.lab.icon.controller": {
+            "initial_state": "root.filter",
+            "states": {
+                "icon_scene_fade": {
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_scene_hold": {
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_scene_overlay": {
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_scene_title": {
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_exclaim": {
+                    "animations": [
+                        "icon.spin_slow"
+                    ],
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_question": {
+                    "animations": [
+                        "icon.float"
+                    ],
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_shop": {
+                    "animations": [
+                        "icon.spin_slow"
+                    ],
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "icon_talk": {
+                    "animations": [
+                        "icon.talk"
+                    ],
+                    "transitions": [
+                        {
+                            "root.filter": "query.variant == 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "root.filter": {
+                    "transitions": [
+                        {
+                            "icon_scene_fade": "query.variant == 1"
+                        },
+                        {
+                            "icon_scene_hold": "query.variant == 2"
+                        },
+                        {
+                            "icon_scene_overlay": "query.variant == 3"
+                        },
+                        {
+                            "icon_scene_title": "query.variant == 4"
+                        },
+                        {
+                            "icon_exclaim": "query.variant == 5"
+                        },
+                        {
+                            "icon_question": "query.variant == 6"
+                        },
+                        {
+                            "icon_shop": "query.variant == 7"
+                        },
+                        {
+                            "icon_talk": "query.variant == 8"
+                        }
+                        //{"icon_scale": "query.is_in_ui ? 0 : 1"}
+                    ],
+                    "blend_transition": 0.5
+                }
+            }
+        }
+    }
+}

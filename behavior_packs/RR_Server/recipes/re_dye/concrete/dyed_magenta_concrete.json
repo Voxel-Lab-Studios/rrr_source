@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+    "identifier": "lab:dyed_magenta_concrete"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "group": "concrete_powder",
+    "ingredients": [
+      {
+        "item": "minecraft:dye",
+        "data": 13
+      },
+      {
+        "item": "minecraft:concrete"
+      }
+    ],
+    "result": {
+      "item": "minecraft:concrete",
+      "data": 2,
+      "count": 1
+    }
+  }
+}

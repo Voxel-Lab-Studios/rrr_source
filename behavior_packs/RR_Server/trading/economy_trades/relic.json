@@ -1,0 +1,113 @@
+{
+	"tiers": [
+		{
+			"groups": [
+				{
+					"trades": [
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 1
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:saddle",
+									"quantity": 2
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						},
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 1
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:name_tag",
+									"quantity": 12
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						},
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 3
+								}
+							],
+							"gives": [
+								{
+									"item": "lab:magic_mirror",
+									"quantity": 1
+								}
+							],
+							"reward_exp": false,
+							"max_uses": -1
+						},
+						{
+							"wants": [{"item": "minecraft:diamond","quantity": 12}],
+							"gives": [{"item": "minecraft:spawn_egg","functions": [{"function": "set_actor_id","id": "lab:home"}]}],
+							"max_uses": -1
+						},
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 12
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:spyglass",
+									"quantity": 1
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						},
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 15
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:lodestone",
+									"quantity": 1
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						},
+						{
+							"wants": [
+								{
+									"item": "minecraft:diamond",
+									"quantity": 12
+								}
+							],
+							"gives": [
+								{
+									"item": "minecraft:lodestone_compass",
+									"quantity": 1
+								}
+							],						
+							"reward_exp": false,
+							"max_uses": -1
+						}
+					]
+				}
+			]
+		}
+	]
+}

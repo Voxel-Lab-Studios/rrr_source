@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.lab.quest_marker.equip",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 5,
+				"visible_bounds_height": 11.5,
+				"visible_bounds_offset": [0, 5.25, 0]
+			},
+			"bones": [
+				{
+					"name": "arrow",
+					"pivot": [0, 110.5, 0],
+					"cubes": [
+						{"origin": [-8.5, 102, 0], "size": [17, 17, 0], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "arrow2",
+					"parent": "arrow",
+					"pivot": [0, 110.5, 0],
+					"rotation": [-180, -90, 180]
+				}
+			]
+		}
+	]
+}

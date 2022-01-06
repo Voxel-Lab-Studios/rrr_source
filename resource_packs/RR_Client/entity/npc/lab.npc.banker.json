@@ -1,0 +1,101 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "lab:npc.banker", 
+      "materials": {
+        "default": "entity_alphatest",
+        "transparent": "slime_outer",
+        "glow": "glow_squid"
+      },
+      "textures": {
+        "default": "textures/lab/npc/banker",
+        "cape": "textures/entity/cape_invisible",
+        "icon_exclaim": "textures/lab/common/icons/exclaim",
+        "icon_question": "textures/lab/common/icons/question",
+        "icon_shop": "textures/lab/common/icons/shop",
+        "icon_talk": "textures/lab/common/icons/talk",
+        "icon_scene_fade": "textures/lab/common/icons/fade",
+        "icon_scene_hold": "textures/lab/common/icons/fade",
+        "icon_scene_overlay": "textures/lab/common/icons/overlay"
+      },
+      "geometry": {
+        "default": "geometry.lab.npc.alex",
+        "icon_exclaim": "geometry.lab.icon.exclaim",
+        "icon_question": "geometry.lab.icon.question",
+        "icon_shop": "geometry.lab.icon.shop",
+        "icon_talk": "geometry.lab.icon.talk"
+      },
+      "scripts": {
+        "scale": "0.9375",
+        "initialize": [
+          "variable.is_holding_right = 0.0;",
+          "variable.is_blinking = 0.0;",
+          "variable.last_blink_time = 0.0;",
+          "variable.hand_bob = 0.0;"
+        ],
+        "pre_animation": [
+          "variable.icon_exclaim = query.variant == 5;",
+          "variable.icon_question = query.variant == 6;",
+          "variable.icon_shop = query.variant == 7;",
+          "variable.icon_talk = query.variant == 8;",
+          "variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"
+        ],
+        "animate": [
+          "lab.root",
+          {
+            "admire": "query.is_admiring"
+          },
+          {
+            "swimming": "query.is_swimming"
+          },
+          {
+            "swimming.legs": "query.is_swimming"
+          },
+          {
+            "emote.talk": "variable.icon_talk"
+          },
+          "move",
+          "bob",
+          "look_at_target_controller"
+        ]
+      },
+      "animations": {
+        "base_controller": "controller.animation.player.base",
+        "look_at_target_controller": "controller.animation.humanoid.look_at_target",
+        "crossbow_controller": "controller.animation.player.crossbow",
+        "look_at_target_default": "animation.humanoid.look_at_target.default",
+        "look_at_target_gliding": "animation.humanoid.look_at_target.gliding",
+        "look_at_target_swimming": "animation.humanoid.look_at_target.swimming",
+        "humanoid_base_pose": "animation.humanoid.base_pose",
+        "move": "animation.humanoid.move",
+        "bob": "animation.humanoid.bob",
+        "swimming": "animation.player.swim",
+        "move.arms": "animation.player.move.arms",
+        "move.legs": "animation.player.move.legs",
+        "swimming.legs": "animation.player.swim.legs",
+        "celebrating": "animation.humanoid.celebrating",
+        "admire": "animation.piglin.admire",
+        
+        "lab.root": "controller.animation.lab.root",
+        "lab.icon.controller": "controller.animation.lab.icon.controller",
+
+        "icon.float": "animation.lab.icon.spin.slow",
+        "icon.spin": "animation.lab.icon.spin",
+        "icon.spin_slow": "animation.lab.icon.spin.slow",
+        "icon.talk": "animation.lab.icon.talk",
+
+        "emote.talk": "animation.lab.emote.talk",
+        "emote.hold.one_arm" : "animation.lab.emote.hold.one_arm"
+      },
+      "render_controllers": [
+        "controller.render.default",
+        { "controller.render.lab.icon.exclaim": "variable.icon_exclaim"},
+        { "controller.render.lab.icon.question": "variable.icon_question" },
+        { "controller.render.lab.icon.shop": "variable.icon_shop" },
+        { "controller.render.lab.icon.talk": "variable.icon_talk" }
+      ],
+      "enable_attachables": true
+    }
+  }
+}

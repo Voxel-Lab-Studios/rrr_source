@@ -1,0 +1,16 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.lab.block_grid" : {
+			"loop" : true,
+			"bones" : {
+				"root" : {
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+					"rotation": [ 0, "-query.body_y_rotation + (Math.round(query.body_y_rotation / 90) * 90)", 0 ]
+				}
+			}
+		}
+	}
+}

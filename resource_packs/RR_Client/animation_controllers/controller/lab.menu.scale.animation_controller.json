@@ -1,0 +1,32 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.lab.menu_scale": {
+            "initial_state": "default_state",
+            "states": {
+                "default_state": {
+                    "animations": [
+                        "scale_down"
+                    ],
+                    "transitions": [
+                        {
+                            "attack_state": "!query.is_sheared"
+                        }
+                    ],
+                    "blend_transition": 1
+                },
+                "attack_state": {
+                    "animations": [
+                        "scale_default"
+                    ],
+                    "transitions": [
+                        {
+                            "default_state": "query.is_sheared"
+                        }
+                    ],
+                    "blend_transition": 1
+                }
+            }
+        }
+    }
+}

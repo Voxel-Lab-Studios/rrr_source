@@ -1,0 +1,34 @@
+{
+	"resource_pack_name": "lab",
+	"texture_name": "atlas.items",
+	"texture_data": {
+		"lab:coin": {
+			"textures": "textures/lab/items/vox_coin" 
+		},
+		"lab:magic_mirror": {
+			"textures": "textures/lab/items/magic_mirror"
+		},
+		"lab:crystal": {
+			"textures": "textures/lab/items/crystal_node"
+		},
+		"lab:tropical_susshi": {
+			"textures": "textures/lab/items/tropical_sushi"
+		},
+		"lab:cod_susshi": {
+			"textures": "textures/lab/items/cod_sushi"
+		},
+		"lab:salmon_susshi": {
+			"textures": "textures/lab/items/salmon_sushi"
+		},
+		"lab:puff_susshi": {
+			"textures": "textures/lab/items/puffer_sushi"
+		},
+		"lab:rice_bowl": {
+			"textures": "textures/lab/items/rice_bowl"
+		},
+		"lab:mega_torch": {
+			"textures": "textures/lab/items/torch"
+		}
+	}
+}
+

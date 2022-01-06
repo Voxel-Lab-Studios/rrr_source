@@ -1,0 +1,34 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.lab.mega_torch.large",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 6,
+				"visible_bounds_offset": [0, 2, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-2, 49, -2], "size": [4, 6, 4], "inflate": 2, "uv": [0, 0]},
+						{"origin": [-1, 0, -1], "size": [2, 16, 2], "uv": [0, 10]},
+						{"origin": [-1, 16, -1], "size": [2, 16, 2], "uv": [0, 10]},
+						{"origin": [-1, 32, -1], "size": [2, 16, 2], "uv": [0, 10]},
+						{"origin": [-2, 0, -2], "size": [4, 1, 4], "uv": [8, 10]}
+					],
+					"locators": {
+						"particle": {
+							"offset": [0, 62, 0],
+							"rotation": [180, 0, 0]
+						}
+					}
+				}
+			]
+		}
+	]
+}
