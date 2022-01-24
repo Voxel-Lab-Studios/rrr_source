@@ -1,627 +1,571 @@
 {
-  "format_version": "1.16.0",
+  "format_version": "1.18.0",
   "minecraft:entity": {
     "description": {
       "identifier": "minecraft:horse",
+      "runtime_identifier": "minecraft:horse",
       "is_spawnable": true,
       "is_summonable": true,
       "is_experimental": false,
-      "scripts": {"animate": ["mob.death.c"]},
-      "animations": {"mob.death.c": "controller.animation.lab.mob.death"}
+			"scripts": {
+			  "animate": [
+			   "lab:horse"
+			  ]
+			},
+			"animations": {
+			  "lab:horse": "controller.animation.lab.horse.in_water"
+			}
     },
-
-    "component_groups": {
-      "minecraft:horse_baby": {
-        "minecraft:is_baby": {
+    "component_groups":{
+      "lab:is_buoyant":{ // Add enviroment filter to switch the horses buoyant ability  
+        "minecraft:buoyant": {
+          "base_buoyancy": 0.5,"apply_gravity": true,"simulate_waves": true,
+          "big_wave_probability": 0.02,"big_wave_speed": 5.0,
+          "liquid_blocks": ["minecraft:water","minecraft:flowing_water"]
         },
-        "minecraft:scale_by_age": {
-          "start_scale": 0.5,
-          "end_scale": 1.0
-        },
-        "minecraft:ageable": {
-          "duration": 1200,
-          "feed_items": [
-            {
-              "item": "wheat",
-              "growth": 0.016667
-            },
-            {
-              "item": "sugar",
-              "growth": 0.025
-            },
-            {
-              "item": "hay_block",
-              "growth": 0.15
-            },
-            {
-              "item": "apple",
-              "growth": 0.05
-            },
-            {
-              "item": "golden_carrot",
-              "growth": 0.05
-            },
-            {
-              "item": "golden_apple",
-              "growth": 0.2
-            },
-            {
-              "item": "appleEnchanted",
-              "growth": 0.2
-            }
-          ],
-          "grow_up": {
-            "event": "minecraft:ageable_grow_up",
-            "target": "self"
-          }
-        },
-        "minecraft:behavior.follow_parent": {
-          "priority": 4,
-          "speed_multiplier": 1.0
+        "minecraft:behavior.rise_to_liquid_level": {
+          "priority": 0,
+          "liquid_y_offset": -0.25,
+          "rise_delta": 0.01,
+          "sink_delta": 0.03
         }
       },
-
-      "minecraft:horse_adult": {
+      "lab:is_wild": {
+        "minecraft:despawn": {"despawn_from_distance": {}},
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "family_types": ["player","zombie"],
+          "interact_text": "action.interact.mount",
+          "seats": {"position": [ 0.0, 1.1, -0.2 ]}
+        },
+        "minecraft:behavior.mount_pathing": {"priority": 2,"speed_multiplier": 1.5,"target_dist": 0.0,"track_target": true},
+        "minecraft:tamemount": {
+          "min_temper": 0,"max_temper": 100,
+          "feed_text": "action.interact.feed","ride_text": "action.interact.mount",
+          "feed_items": [
+            {"item": "wheat","temper_mod": 3},
+            {"item": "sugar","temper_mod": 3},
+            {"item": "apple","temper_mod": 3},
+            {"item": "golden_carrot","temper_mod": 5},
+            {"item": "golden_apple","temper_mod": 10},
+            {"item": "appleEnchanted","temper_mod": 10}
+          ],
+          "auto_reject_items": [
+            {"item":"horsearmorleather"},
+            {"item":"horsearmoriron"},
+            {"item":"horsearmorgold"},
+            {"item":"horsearmordiamond"},
+            {"item":"saddle"}
+          ],
+          "tame_event": {"event": "lab:on_tame_event","target": "self"}
+        }
+      },
+      "lab:is_tamed": {
+          "minecraft:is_tamed":{},
+          "minecraft:persistent": {},
+          "minecraft:type_family": {"family": ["horse","mount","mob","tamed"]},
+          "minecraft:sittable":{},
+          "minecraft:inventory": {"inventory_size": 2,"container_type": "horse"},
+          "minecraft:breedable": {
+            "require_tame": true,"inherit_tamed": false,
+            "breeds_with": [
+              {
+                "mate_type": "minecraft:horse","baby_type": "minecraft:horse",
+                "breed_event": {"event": "minecraft:entity_born","target": "baby"}
+              },
+              {
+                "mate_type": "minecraft:donkey","baby_type": "minecraft:mule",
+                "breed_event": {"event": "minecraft:entity_born","target": "baby"}
+              }
+            ],
+            "breed_items": ["golden_carrot","golden_apple","appleEnchanted"]
+          },
+          "minecraft:rideable": {
+            "seat_count": 1,"crouching_skip_interact": true,
+            "family_types": ["player"],
+            "interact_text": "action.interact.ride.horse",
+            "seats": {"position": [ 0.0, 1.1, -0.2 ]}
+          }
+      },
+      "lab:horse_saddled": {
+        "minecraft:is_saddled": {},
+        "minecraft:input_ground_controlled": {},
+        "minecraft:can_power_jump": {},
+        "minecraft:behavior.player_ride_tamed": {}
+      },
+      "lab:is_baby": {
+          "minecraft:is_baby": {},
+          "minecraft:scale_by_age": {"start_scale": 0.5,"end_scale": 1.0},
+          "minecraft:ageable": {"duration": 1200,
+            "feed_items": [
+              {"item": "wheat","growth": 0.016667},
+              {"item": "sugar","growth": 0.025},
+              {"item": "hay_block","growth": 0.15},
+              {"item": "apple","growth": 0.05},
+              {"item": "golden_carrot","growth": 0.05},
+              {"item": "golden_apple","growth": 0.2},
+              {"item": "appleEnchanted","growth": 0.2}
+            ],
+            "grow_up": {"event": "minecraft:ageable_grow_up","target": "self"}
+          }
+      },
+      "lab:is_adult": {
         "minecraft:experience_reward": {
           "on_bred": "Math.Random(1,7)",
           "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
         },
-        "minecraft:loot": {
-          "table": "loot_tables/entities/horse.json"
-        },
-        "minecraft:behavior.run_around_like_crazy": {
-          "priority": 1,
-          "speed_multiplier": 1.2
-        },
-        "minecraft:behavior.breed": {
-          "priority": 2,
-          "speed_multiplier": 1.0
-        }
+          "minecraft:loot": {"table": "loot_tables/entities/horse.json"},
+          "minecraft:behavior.run_around_like_crazy": {"priority": 4,"speed_multiplier": 1.2}
       },
-
-      "minecraft:horse_wild": {
-        "minecraft:rideable": {
-          "seat_count": 1,
-          "family_types": [
-            "player",
-            "zombie"
-          ],
-          "interact_text": "action.interact.mount",
-          "seats": {
-            "position": [ 0.0, 1.1, -0.2 ]
-          }
-
-        },
-        "minecraft:behavior.mount_pathing": {
-          "priority": 2,
-          "speed_multiplier": 1.5,
-          "target_dist": 0.0,
-          "track_target": true
-        },
-        "minecraft:tamemount": {
-          "min_temper": 0,
-          "max_temper": 100,
-          "feed_text": "action.interact.feed",
-          "ride_text": "action.interact.mount",
-          "feed_items": [
-            {
-              "item": "wheat",
-              "temper_mod": 3
-            },
-            {
-              "item": "sugar",
-              "temper_mod": 3
-            },
-            {
-              "item": "apple",
-              "temper_mod": 3
-            },
-            {
-              "item": "golden_carrot",
-              "temper_mod": 5
-            },
-            {
-              "item": "golden_apple",
-              "temper_mod": 10
-            },
-            {
-              "item": "appleEnchanted",
-              "temper_mod": 10
-            }
-          ],
-          "auto_reject_items": [
-            {
-              "item": "horsearmorleather"
-            },
-            {
-              "item": "horsearmoriron"
-            },
-            {
-              "item": "horsearmorgold"
-            },
-            {
-              "item": "horsearmordiamond"
-            },
-            {
-              "item": "saddle"
-            }
-          ],
-          "tame_event": {
-            "event": "minecraft:on_tame",
-            "target": "self"
-          }
-        }
-      },
-
-      "minecraft:horse_tamed": {
-        "minecraft:is_tamed": {
-        },
-        "minecraft:rideable": {
-          "seat_count": 1,
-          "crouching_skip_interact": true,
-          "family_types": [
-            "player"
-          ],
-          "interact_text": "action.interact.ride.horse",
-          "seats": {
-            "position": [ 0.0, 1.1, -0.2 ]
-          }
-
-        },
-        "minecraft:inventory": {
-          "inventory_size": 2,
-          "container_type": "horse"
-        },
-        "minecraft:breedable": {
-          "require_tame": true,
-          "inherit_tamed": false,
-          "breeds_with": [
-            {
-              "mate_type": "minecraft:horse",
-              "baby_type": "minecraft:horse",
-              "breed_event": {
-                "event": "minecraft:entity_born",
-                "target": "baby"
-              }
-            },
-            {
-              "mate_type": "minecraft:donkey",
-              "baby_type": "minecraft:mule",
-              "breed_event": {
-                "event": "minecraft:entity_born",
-                "target": "baby"
-              }
-            }
-          ],
-          "breed_items": [
-            "golden_carrot",
-            "golden_apple",
-            "appleEnchanted"
-          ]
-        },
-        "minecraft:behavior.tempt": {
-          "priority": 5,
-          "speed_multiplier": 1.2,
-          "items": [
-            "golden_apple",
-            "appleEnchanted",
-            "golden_carrot"
-          ]
-        }
-      },
-
-      "minecraft:horse_saddled": {
-        "minecraft:is_saddled": {
-        },
-        "minecraft:input_ground_controlled": {
-        },
-        "minecraft:can_power_jump": {
-        },
-        "minecraft:behavior.player_ride_tamed": {
-        }
-      },
-
-      "minecraft:base_white": {
-        "minecraft:variant": {
-          "value": 0
-        }
-      },
-      "minecraft:base_creamy": {
-        "minecraft:variant": {
-          "value": 1
-        }
-      },
-      "minecraft:base_chestnut": {
-        "minecraft:variant": {
-          "value": 2
-        }
-      },
-      "minecraft:base_brown": {
-        "minecraft:variant": {
-          "value": 3
-        }
-      },
-      "minecraft:base_black": {
-        "minecraft:variant": {
-          "value": 4
-        }
-      },
-      "minecraft:base_gray": {
-        "minecraft:variant": {
-          "value": 5
-        }
-      },
-      "minecraft:base_darkbrown": {
-        "minecraft:variant": {
-          "value": 6
-        }
-      },
-      "minecraft:markings_none": {
-        "minecraft:mark_variant": {
-          "value": 0
-        }
-      },
-      "minecraft:markings_white_details": {
-        "minecraft:mark_variant": {
-          "value": 1
-        }
-      },
-      "minecraft:markings_white_fields": {
-        "minecraft:mark_variant": {
-          "value": 2
-        }
-      },
-      "minecraft:markings_white_dots": {
-        "minecraft:mark_variant": {
-          "value": 3
-        }
-      },
-      "minecraft:markings_black_dots": {
-        "minecraft:mark_variant": {
-          "value": 4
-        }
-      }
+      //#Visual Groups
+      "lab:type_black00": {"minecraft:skin_id": {"value": 0}},"lab:type_black01": {"minecraft:skin_id": {"value": 1}},
+      "lab:type_black02": {"minecraft:skin_id": {"value": 2}},"lab:type_black03": {"minecraft:skin_id": {"value": 3}},
+      "lab:type_black04": {"minecraft:skin_id": {"value": 4}},"lab:type_brown00": {"minecraft:skin_id": {"value": 5}},
+      "lab:type_brown01": {"minecraft:skin_id": {"value": 6}},"lab:type_brown02": {"minecraft:skin_id": {"value": 7}},
+      "lab:type_brown03": {"minecraft:skin_id": {"value": 8}},"lab:type_brown04": {"minecraft:skin_id": {"value": 9}},
+      "lab:type_brown05": {"minecraft:skin_id": {"value": 10}},"lab:type_chestnut00": {"minecraft:skin_id": {"value": 11}},
+      "lab:type_chestnut01": {"minecraft:skin_id": {"value": 12}},"lab:type_chestnut02": {"minecraft:skin_id": {"value": 13}},
+      "lab:type_chestnut03": {"minecraft:skin_id": {"value": 14}},"lab:type_chestnut04": {"minecraft:skin_id": {"value": 15}},
+      "lab:type_creamy00": {"minecraft:skin_id": {"value": 16}},"lab:type_creamy01": {"minecraft:skin_id": {"value": 17}},
+      "lab:type_creamy02": {"minecraft:skin_id": {"value": 18}},"lab:type_creamy03": {"minecraft:skin_id": {"value": 19}},
+      "lab:type_creamy04": {"minecraft:skin_id": {"value": 20}},"lab:type_darkbrown00": {"minecraft:skin_id": {"value": 21}},
+      "lab:type_darkbrown01": {"minecraft:skin_id": {"value": 22}},"lab:type_darkbrown02": {"minecraft:skin_id": {"value": 23}},
+      "lab:type_darkbrown03": {"minecraft:skin_id": {"value": 24}},"lab:type_darkbrown04": {"minecraft:skin_id": {"value": 25}},
+      "lab:type_darkbrown05": {"minecraft:skin_id": {"value": 26}},"lab:type_gray00": {"minecraft:skin_id": {"value": 27}},
+      "lab:type_gray01": {"minecraft:skin_id": {"value": 28}},"lab:type_gray02": {"minecraft:skin_id": {"value": 29}},
+      "lab:type_gray03": {"minecraft:skin_id": {"value": 30}},"lab:type_gray04": {"minecraft:skin_id": {"value": 31}},
+      "lab:type_gray05": {"minecraft:skin_id": {"value": 32}},"lab:type_white00": {"minecraft:skin_id": {"value": 33}},
+      "lab:type_white01": {"minecraft:skin_id": {"value": 34}},"lab:type_white02": {"minecraft:skin_id": {"value": 35}},
+      "lab:type_white03": {"minecraft:skin_id": {"value": 36}},"lab:type_white04": {"minecraft:skin_id": {"value": 37}},
+      "lab:type_white05": {"minecraft:skin_id": {"value": 38}},"lab:type_white06": {"minecraft:skin_id": {"value": 39}},
+      "lab:type_white07": {"minecraft:skin_id": {"value": 40}},"lab:type_ender": {"minecraft:skin_id": {"value": 41}},
+      "lab:type_shadow": {"minecraft:skin_id": {"value": 42}},"lab:type_skeleton": {"minecraft:skin_id": {"value": 43}},
+      "lab:type_unicorn": {"minecraft:skin_id": {"value": 44}},"lab:type_void": {"minecraft:skin_id": {"value": 45}},
+      "lab:type_zombie": {"minecraft:skin_id": {"value": 46}},"lab:type_magma": {"minecraft:skin_id": {"value": 47}},
+      "lab:type_magma.f1": {"minecraft:skin_id": {"value": 48}},"lab:type_magma.f2": {"minecraft:skin_id": {"value": 49}},
+      
+      "lab:gear_default": {"minecraft:variant": {"value": 0}},"lab:gear_aqua": {"minecraft:variant": {"value": 1}},
+      "lab:gear_black": {"minecraft:variant": {"value": 2}},"lab:gear_blue": {"minecraft:variant": {"value": 3}},
+      "lab:gear_brown": {"minecraft:variant": {"value": 4}},"lab:gear_dark_aqua": {"minecraft:variant": {"value": 5}},
+      "lab:gear_dark_blue": {"minecraft:variant": {"value": 6}},"lab:gear_dark_green": {"minecraft:variant": {"value": 7}},
+      "lab:gear_dark_red": {"minecraft:variant": {"value": 8}},"lab:gear_gold": {"minecraft:variant": {"value": 9}},
+      "lab:gear_gray": {"minecraft:variant": {"value": 10}},"lab:gear_green": {"minecraft:variant": {"value": 11}},
+      "lab:gear_light_gray": {"minecraft:variant": {"value": 12}},"lab:gear_light_purple": {"minecraft:variant": {"value": 13}},
+      "lab:gear_purple": {"minecraft:variant": {"value": 14}},"lab:gear_red": {"minecraft:variant": {"value": 15}},
+      "lab:gear_white": {"minecraft:variant": {"value": 16}},"lab:gear_yellow": {"minecraft:variant": {"value": 17}}
     },
-
     "components": {
-      "minecraft:is_hidden_when_invisible": {
+      "minecraft:nameable": {},
+      "minecraft:balloonable": {},
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:health": {"value": {"range_min": 15,"range_max": 60}},
+      "minecraft:follow_range": {"value": 100,"max": 100},
+      "minecraft:breathable": {"totalSupply": 15,"suffocateTime": 0},
+      //Movement
+      "minecraft:jump.static": {},
+      "minecraft:movement.generic": {},
+      "minecraft:movement": {"value": {"range_min": 0.1125,"range_max": 0.3375}},
+      "minecraft:horse.jump_strength": {"value": {"range_min": 0.4,"range_max": 2.0}},
+      "minecraft:leashable": {"soft_distance": 4.0,"hard_distance": 6.0,"max_distance": 10.0},
+      "minecraft:navigation.generic": {
+          "can_walk_in_lava": false,"can_path_over_lava": false,
+          "can_jump": true,"can_walk": true,"can_path_from_air": false,
+          "avoid_damage_blocks": true,"avoid_portals": true,"avoid_sun": false,
+          "can_break_doors": false,"can_open_doors": false,"can_open_iron_doors": false,"can_pass_doors": true,
+          "avoid_water": true,"can_sink": true,"can_swim": true,"can_breach": false,"is_amphibious": false,"can_path_over_water": true
+      },
+      //Filters
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": {
+              "all_of": [
+                { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_saddled"},
+                {"test": "in_water","operator": "!=","value": true}
+              ]
+            },
+            "event": "lab:on_land"
+          },
+          {
+            "filters": {
+              "any_of": [
+                { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_saddled"},
+                {"test": "in_water","operator": "==","value": true}
+              ]
+            },
+            "event": "lab:in_water"
+          }
+        ]
       },
       "minecraft:equippable": {
         "slots": [
           {
-            "slot": 0,
-            "item": "saddle",
-            "accepted_items": [ "saddle" ],
-            "on_equip": {
-              "event": "minecraft:horse_saddled"
-            },
-            "on_unequip": {
-              "event": "minecraft:horse_unsaddled"
-            }
+            "slot": 0,"item": "saddle",
+            "accepted_items": ["saddle"],
+            "on_equip": {"event": "lab:horse_saddled_event"},
+            "on_unequip": {"event": "lab:horse_unsaddled_event"}
           },
           {
-            "slot": 1,
-            "item": "horsearmoriron",
-            "accepted_items": [
-              "horsearmorleather",
-              "horsearmoriron",
-              "horsearmorgold",
-              "horsearmordiamond"
-            ]
+            "slot": 1,"item": "horsearmoriron",
+            "accepted_items": ["horsearmorleather","horsearmoriron","horsearmorgold","horsearmordiamond"]
           }
         ]
-      },
-      "minecraft:type_family": {
-        "family": [ "horse", "mob", "mount" ]
-      },
-      "minecraft:breathable": {
-        "total_supply": 15,
-        "suffocate_time": 0
-      },
-      "minecraft:collision_box": {
-        "width": 1.4,
-        "height": 1.6
-      },
-      "minecraft:health": {
-        "value": {
-          "range_min": 15,
-          "range_max": 30
-        }
-      },
-      "minecraft:hurt_on_condition": {
-        "damage_conditions": [
-          {
-            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
-            "cause": "lava",
-            "damage_per_tick": 4
-          }
-        ]
-      },
-      "minecraft:movement": {
-        "value": {
-          "range_min": 0.1125,
-          "range_max": 0.3375
-        }
-      },
-      "minecraft:navigation.walk": {
-        "can_path_over_water": true,
-        "avoid_water": true,
-        "avoid_damage_blocks": true
-      },
-      "minecraft:movement.basic": {
-      },
-      "minecraft:jump.static": {
-      },
-      "minecraft:nameable": {
-      },
-      "minecraft:horse.jump_strength": {
-        "value": {
-          "range_min": 0.4,
-          "range_max": 1.0
-        }
-      },
-      "minecraft:leashable": {
-        "soft_distance": 4.0,
-        "hard_distance": 6.0,
-        "max_distance": 10.0
-      },
-      "minecraft:balloonable": {
       },
       "minecraft:healable": {
         "items": [
-          {
-            "item": "wheat",
-            "heal_amount": 2
-          },
-          {
-            "item": "sugar",
-            "heal_amount": 1
-          },
-          {
-            "item": "hay_block",
-            "heal_amount": 20
-          },
-          {
-            "item": "apple",
-            "heal_amount": 3
-          },
-          {
-            "item": "golden_carrot",
-            "heal_amount": 4
-          },
-          {
-            "item": "golden_apple",
-            "heal_amount": 10
-          },
-          {
-            "item": "appleEnchanted",
-            "heal_amount": 10
-          }
+          {"item": "wheat","heal_amount": 2},{"item": "sugar","heal_amount": 1},
+          {"item": "hay_block","heal_amount": 20},{"item": "apple","heal_amount": 3},
+          {"item": "golden_carrot","heal_amount": 4},{"item": "golden_apple","heal_amount": 10},
+          {"item": "appleEnchanted","heal_amount": 10}
         ]
       },
-      "minecraft:despawn": {
-        "despawn_from_distance": {}
+      "minecraft:hurt_on_condition": {
+          "damage_conditions": [
+            {
+              "filters": {"test": "in_lava","subject": "self","operator": "==","value": true},
+              "cause": "lava","damage_per_tick": 4
+            }
+          ]
       },
-      "minecraft:behavior.float": {
-        "priority": 0
-      },
-      "minecraft:behavior.panic": {
-        "priority": 3,
-        "speed_multiplier": 1.2
-      },
-      "minecraft:behavior.random_stroll": {
-        "priority": 6,
-        "speed_multiplier": 0.7
-      },
-      "minecraft:behavior.look_at_player": {
-        "priority": 7,
-        "look_distance": 6.0,
-        "probability": 0.02
-      },
-      "minecraft:behavior.random_look_around": {
-        "priority": 8
-      },
-      "minecraft:physics": {
-      },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      },
-      "minecraft:conditional_bandwidth_optimization": {
-      }
-    },
+      //Physics
+      "minecraft:physics": {},
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:collision_box": {"width": 1.4,"height": 1.6},
+      "minecraft:pushable": {"is_pushable": true,"is_pushable_by_piston": true},
+      //Behaviors
+      "minecraft:behavior.float": {"priority": 0},
+      "minecraft:behavior.stay_while_sitting": {"priority": 1},
+      "minecraft:behavior.breed": {"priority": 2,"speed_multiplier": 1.0},
+      "minecraft:behavior.panic": {"priority": 3,"speed_multiplier": 1.2},
 
+      "minecraft:behavior.follow_owner": {"priority": 5,"start_distance": 16,"stop_distance": 3},
+      "minecraft:behavior.tempt": {"speed_multiplier": 1.2,"items": ["golden_apple","appleEnchanted","golden_carrot"],"priority": 6},
+      "minecraft:behavior.mount_pathing": {"priority": 7,"speed_multiplier": 1.5,"target_dist": 0.0,"track_target": true},
+      //priority 8 open
+      "minecraft:behavior.random_stroll": {"priority": 10,"speed_multiplier": 1},
+      "minecraft:behavior.look_at_target": {"priority": 11,"look_distance": 8},
+      "minecraft:behavior.random_look_around": {"priority": 12},
+      "minecraft:behavior.follow_parent": {"priority": 16,"speed_multiplier": 1.1}
+    },
     "events": {
+      "lab:manual_spawn": {"add": {"component_groups": ["lab:type_void"]}},//Overwiting define_type
       "minecraft:entity_spawned": {
+          "randomize": [
+            {"weight": 95,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_adult","lab:gear_default"]}},
+            {"weight": 5,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_baby","lab:gear_default"]}}
+          ]
+      },
+      "minecraft:entity_born": {"add": {"component_groups": ["lab:is_wild","lab:is_baby","lab:gear_default"]}},
+      "lab:horse_saddled_event": {"add": {"component_groups": ["lab:horse_saddled"]}},
+      "lab:horse_unsaddled_event": {"remove": {"component_groups": ["lab:horse_saddled"]}},
+      "lab:on_tame_event": {"remove": {"component_groups": ["lab:is_wild"]},"add": {"component_groups": ["lab:is_tamed"]}},
+      "lab:in_water": {"add": {"component_groups": ["lab:is_buoyant"]}},
+      "lab:on_land": {"remove": {"component_groups": ["lab:is_buoyant"]}},
+      
+      "lab:define_type_event": {//Link Skeleton & Zombie Through Events
         "sequence": [
           {
-            "randomize": [
-              {
-                "weight": 36,
-                "add": {
-                  "component_groups": [
-                    "minecraft:horse_adult",
-                    "minecraft:horse_wild"
-                  ]
-                }
-              },
-              {
-                "weight": 9,
-                "add": {
-                  "component_groups": [
-                    "minecraft:horse_baby"
-                  ]
-                }
-              }
-            ]
+            "filters": {
+              "any_of": [
+                {"test": "is_biome", "operator": "!=","value": "desert"},
+                {"test": "is_biome", "operator": "!=","value": "mesa"},
+                {"test": "is_biome", "operator": "!=","value": "savanna"}
+              ]
+            },
+            "trigger": "lab:define_horse_event"
           },
           {
-            "randomize": [
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_white" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_creamy" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_chestnut" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_brown" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_black" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_gray" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:base_darkbrown" ]
-                }
-              }
-            ]
-          },
-          {
-            "randomize": [
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:markings_none" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:markings_white_details" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:markings_white_fields" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:markings_white_dots" ]
-                }
-              },
-              {
-                "weight": 1,
-                "add": {
-                  "component_groups": [ "minecraft:markings_black_dots" ]
-                }
-              }
-            ]
+            "filters": {
+              "any_of": [
+                {"test": "is_biome", "operator": "==","value": "desert"},
+                {"test": "is_biome", "operator": "==","value": "mesa"},
+                {"test": "is_biome", "operator": "==","value": "savanna"}
+              ]
+            },
+            "trigger": "lab:is_zebra_event"
           }
         ]
       },
-
-      "minecraft:entity_born": {
-        "add": {
-          "component_groups": [
-            "minecraft:horse_baby"
-          ]
-        }
+      "lab:define_horse_event": {
+        "randomize": [
+          {"weight": 1,"trigger": "lab:is_black_event"},
+          {"weight": 1,"trigger": "lab:is_brown_event"},
+          {"weight": 1,"trigger": "lab:is_chestnut_event"},
+          {"weight": 1,"trigger": "lab:is_creamy_event"},
+          {"weight": 1,"trigger": "lab:is_darkbrown_event"},
+          {"weight": 1,"trigger": "lab:is_gray_event"},
+          {"weight": 1,"trigger": "lab:is_white_event"},
+          {"weight": 1,"trigger": "lab:is_special_event"}
+        ]
       },
-
-      "minecraft:on_tame": {
+      "lab:is_black_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_black00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_black01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_black02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_black03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_black04"]}}
+        ]
+      },
+      "lab:is_brown_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown04"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_brown05"]}}
+        ]
+      },
+      "lab:is_chestnut_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_chestnut00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_chestnut01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_chestnut02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_chestnut03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_chestnut04"]}}
+        ]
+      },
+      "lab:is_creamy_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_creamy00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_creamy01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_creamy02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_creamy03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_creamy04"]}}
+        ]
+      },
+      "lab:is_darkbrown_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown04"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_darkbrown05"]}}
+        ]
+      },
+      "lab:is_gray_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray04"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_gray05"]}}
+        ]
+      },
+      "lab:is_white_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_white00"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_white01"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_white02"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_white03"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_white04"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_white05"]}}
+        ]
+      },
+      "lab:is_zebra_event": {
+        "randomize": [
+          {"weight": 90,"add": {"component_groups": ["lab:type_white07"]}},
+          {"weight": 90,"add": {"component_groups": ["lab:type_white08"]}},
+          {"weight": 10,"trigger": "lab:is_special_event"}
+        ]
+      },
+      "lab:is_nether_event": {
+        "randomize": [
+          {"weight": 1,"add": {"component_groups": ["lab:type_magma"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_magma.f1"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_magma.f2"]}}
+        ]
+      },
+      "lab:is_special_event": {
+        "randomize": [
+          {"weight": 90,"add": {"component_groups": ["lab:type_ender"]}},
+          {"weight": 80,"add": {"component_groups": ["lab:type_shadow"]}},
+          {"weight": 50,"add": {"component_groups": ["lab:type_void"]}},
+          {"weight": 1,"add": {"component_groups": ["lab:type_unicorn"]}}
+        ]
+      },
+      "lab:equip_gear_default_event": {
         "remove": {
           "component_groups": [
-            "minecraft:horse_wild"
+            "lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
           ]
         },
-        "add": {
-          "component_groups": [
-            "minecraft:horse_tamed"
-          ]
-        }
+        "add": {"component_groups": ["lab:gear_default"]}
       },
-
-      "minecraft:ageable_grow_up": {
+      "lab:equip_gear_aqua_event": {
         "remove": {
           "component_groups": [
-            "minecraft:horse_baby"
+            "lab:gear_default","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
           ]
         },
-        "add": {
-          "component_groups": [
-            "minecraft:horse_adult",
-            "minecraft:horse_wild"
-          ]
-        }
+        "add": {"component_groups": ["lab:gear_aqua"]}
       },
-
-      "minecraft:horse_saddled": {
-        "add": {
-          "component_groups": [
-            "minecraft:horse_saddled"
-          ]
-        }
-      },
-      "minecraft:horse_unsaddled": {
+      "lab:equip_gear_black_event": {
         "remove": {
           "component_groups": [
-            "minecraft:horse_saddled"
+            "lab:gear_default","lab:gear_aqua","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
           ]
-        }
+        },
+        "add": {"component_groups": ["lab:gear_black"]}
       },
-
-      "minecraft:make_white": {
-        "add": {
-          "component_groups": [ "minecraft:base_white" ]
-        }
+      "lab:equip_gear_blue_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_blue"]}
       },
-      "minecraft:make_creamy": {
-        "add": {
-          "component_groups": [ "minecraft:base_creamy" ]
-        }
+      "lab:equip_gear_brown_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_brown"]}
       },
-      "minecraft:make_chestnut": {
-        "add": {
-          "component_groups": [ "minecraft:base_chestnut" ]
-        }
+      "lab:equip_gear_dark_aqua_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_dark_aqua"]}
       },
-      "minecraft:make_brown": {
-        "add": {
-          "component_groups": [ "minecraft:base_brown" ]
-        }
+      "lab:equip_gear_dark_blue_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_dark_blue"]}
       },
-      "minecraft:make_black": {
-        "add": {
-          "component_groups": [ "minecraft:base_black" ]
-        }
+      "lab:equip_gear_dark_green_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_dark_green"]}
       },
-      "minecraft:make_gray": {
-        "add": {
-          "component_groups": [ "minecraft:base_gray" ]
-        }
+      "lab:equip_gear_dark_red_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_dark_red"]}
       },
-      "minecraft:make_darkbrown": {
-        "add": {
-          "component_groups": [ "minecraft:base_darkbrown" ]
-        }
+      "lab:equip_gear_gold_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_gold"]}
+      },
+      "lab:equip_gear_gray_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_gray"]}
+      },
+      "lab:equip_gear_green_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_green"]}
+      },
+      "lab:equip_gear_light_gray_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_light_gray"]}
+      },
+      "lab:equip_gear_light_purple_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_light_purple"]}
+      },
+      "lab:equip_gear_purple_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_red","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_purple"]}
+      },
+      "lab:equip_gear_red_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_white","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_red"]}
+      },
+      "lab:equip_gear_white_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_yellow"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_white"]}
+      },
+      "lab:equip_gear_yellow_event": {
+        "remove": {
+          "component_groups": [
+            "lab:gear_default","lab:gear_aqua","lab:gear_black","lab:gear_blue","lab:gear_brown","lab:gear_dark_aqua",
+            "lab:gear_dark_blue","lab:gear_dark_green","lab:gear_dark_red","lab:gear_gold","lab:gear_gray","lab:gear_green",
+            "lab:gear_light_gray","lab:gear_light_purple","lab:gear_purple","lab:gear_red","lab:gear_white"
+          ]
+        },
+        "add": {"component_groups": ["lab:gear_yellow"]}
       }
     }
   }

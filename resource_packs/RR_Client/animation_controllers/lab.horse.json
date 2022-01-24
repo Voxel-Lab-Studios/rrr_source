@@ -1,0 +1,25 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.lab.horse_particle_effect.c": {
+            "initial_state": "default_state",
+            "states": {
+                "trail.rainbow": {
+                    "animations": ["trail.rainbow"],
+                    "transitions": [
+                        {
+                            "default_state": "!q.is_moving"
+                        }
+                    ]
+                },
+                "default_state": {
+                    "transitions": [
+                        {
+                            "trail.rainbow": "q.skin_id == 44 && q.is_moving"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

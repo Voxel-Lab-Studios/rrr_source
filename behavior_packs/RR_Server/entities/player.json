@@ -8,7 +8,7 @@
 			"is_experimental": false,
 			"scripts": {
 			  "animate": [
-			   "lab:player.root"
+			   "lab:player.root","lab:horse"
 			  ]
 			},
 			"animations": {
@@ -22,7 +22,8 @@
 			  "lab.sleep_cycle": "animation.lab.sleep_cycle",
 			  "lab.mob.death.c": "controller.animation.lab.mob.death",
 			  "lab.biome.c": "controller.animation.lab.biome_test",
-			  "lab.l_level.c": "controller.animation.lab.light_level.sensor"
+			  "lab.l_level.c": "controller.animation.lab.light_level.sensor",
+			  "lab:horse": "controller.animation.lab.horse"
 			}
 		},
 		"component_groups": {

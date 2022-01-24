@@ -1,0 +1,40 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lab.horse.trail.rainbow": {
+			"loop": true,
+			"animation_length": 1,
+			"particle_effects": {
+				"0.0": {
+					"effect": "rainbow",
+					"locator": "rainbow"
+				}
+			}
+		},
+		"animation.lab.horse.sit": {
+			"loop": true,
+			"bones": {
+				"Tail": {
+					"position": [0, -4, 0]
+				},
+				"Neck": {
+					"position": [0, -2, 0]
+				},
+				"BagL": {
+					"position": [0, -3, 0]
+				},
+				"BagR": {
+					"position": [0, -3, 0]
+				},
+				"Saddle": {
+					"rotation": [-10, 0, 0],
+					"position": [0, -2.3, 0]
+				},
+				"hip": {
+					"rotation": [-10, 0, 0],
+					"scale": 1.01
+				}
+			}
+		}
+	}
+}

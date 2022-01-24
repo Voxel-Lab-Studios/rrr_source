@@ -1,0 +1,117 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.lab.horse": {
+      "part_visibility": [
+        { "Saddle": "query.is_saddled" },
+        { "Bit*": "query.is_saddled" },
+        { "Bridle": "query.is_saddled" },
+        { "Reins*" : "query.is_saddled && query.has_rider" },
+        { "Bag*" : false },
+        { "MuleEar*" : false}
+      ],
+      "arrays": {
+        "textures": {
+          "Array.base": [
+            "Texture.base_black00", //0
+            "Texture.base_black01", //1
+            "Texture.base_black02", //2
+            "Texture.base_black03", //3 
+            "Texture.base_black04", //4 
+            "Texture.base_brown00", //5 
+            "Texture.base_brown01", //6 
+            "Texture.base_brown02", //7
+            "Texture.base_brown03", //8 
+            "Texture.base_brown04", //9
+            "Texture.base_brown05", //10
+            "Texture.base_chestnut00", //11 
+            "Texture.base_chestnut01", //12 
+            "Texture.base_chestnut02", //13 
+            "Texture.base_chestnut03", //14
+            "Texture.base_chestnut04", //15 
+            "Texture.base_creamy00", //16 
+            "Texture.base_creamy01", //17 
+            "Texture.base_creamy02", //18 
+            "Texture.base_creamy03", //19 
+            "Texture.base_creamy04", //20 
+            "Texture.base_darkbrown00", //21 
+            "Texture.base_darkbrown01", //22 
+            "Texture.base_darkbrown02", //23 
+            "Texture.base_darkbrown03", //24
+            "Texture.base_darkbrown04", //25 
+            "Texture.base_darkbrown05", //26
+            "Texture.base_gray00", //27 
+            "Texture.base_gray01", //28 
+            "Texture.base_gray02", //29 
+            "Texture.base_gray03", //30
+            "Texture.base_gray04", //31 
+            "Texture.base_gray05", //32 
+            "Texture.base_white00", //33 
+            "Texture.base_white01", //34 
+            "Texture.base_white02", //35 
+            "Texture.base_white03", //36 
+            "Texture.base_white04", //37 
+            "Texture.base_white05", //38 
+            "Texture.base_white06", //39
+            "Texture.base_white07", //40 
+            "Texture.base_ender", //41
+            "Texture.base_shadow", //42
+            "Texture.base_skeleton", //43
+            "Texture.base_unicorn", //44 
+            "Texture.base_void", //45 
+            "Texture.base_zombie", //46 
+            "Texture.base_magma00", //47 
+            "Texture.base_magma01", //48
+            "Texture.base_magma02" //49
+          ],
+          "Array.gear": [
+            "Texture.gear_default",
+            "Texture.gear_aqua", 
+            "Texture.gear_black", 
+            "Texture.gear_blue",
+            "Texture.gear_brown", 
+            "Texture.gear_dark_aqua",
+            "Texture.gear_dark_blue", 
+            "Texture.gear_dark_green", 
+            "Texture.gear_dark_red",
+            "Texture.gear_gold", 
+            "Texture.gear_gray", 
+            "Texture.gear_green", 
+            "Texture.gear_light_gray", 
+            "Texture.gear_light_purple", 
+            "Texture.gear_purple",
+            "Texture.gear_red",
+            "Texture.gear_white",
+            "Texture.gear_yellow"
+          ],
+          "Array.armor": [
+            "Texture.armor_none",
+            "Texture.armor_leather",
+            "Texture.armor_iron",
+            "Texture.armor_gold",
+            "Texture.armor_diamond"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" },
+        { "Saddle": "Material.gear" },
+        { "Bit*": "Material.gear" },
+        { "Bridle": "Material.gear" },
+        { "Reins*" : "Material.gear" }
+      ],
+      "textures": [
+        "Array.base[variable.skin_texture_slot]",
+        "Array.gear[variable.gear_texture_slot]",
+        "Array.armor[variable.armor_texture_slot]"
+      ],
+      "color": {
+        "r": "variable.armor_texture_slot ? query.armor_color_slot(1, 0) : this",
+        "g": "variable.armor_texture_slot ? query.armor_color_slot(1, 1) : this",
+        "b": "variable.armor_texture_slot ? query.armor_color_slot(1, 2) : this",
+        "a": "variable.armor_texture_slot ? query.armor_color_slot(1, 3) : this"
+      }
+    }
+  }
+}

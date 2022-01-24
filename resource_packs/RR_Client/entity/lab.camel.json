@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:camel",
+      "materials": { "default": "horse_leather_armor" },
+      "textures": {
+        "default": "textures/entity/camel/camel_creamy"
+      },
+      "geometry": {
+        "default": "geometry.lab.camel"
+      },
+      "animations": {
+        "setup": "animation.camel.setup.v1.0",
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.camel.baby_transform.v1.0"
+      },
+      "animation_controllers": [
+        { "move": "controller.animation.camel.move" },
+        { "baby": "controller.animation.camel.baby" }
+      ],
+      "render_controllers": [ "controller.render.default" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 38
+      }
+    }
+  }
+}

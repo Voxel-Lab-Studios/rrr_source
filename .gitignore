@@ -4,4 +4,4 @@ db/
 *.txt
 *.jpeg
 world_resource_packs.json
-world_behavior_packs.json
+world_behavior_packs.jsons

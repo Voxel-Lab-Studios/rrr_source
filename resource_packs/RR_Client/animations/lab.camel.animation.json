@@ -1,0 +1,115 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lab.camel.baby_transform": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"position": [0, -6, 0],
+					"scale": [0.91, 0.83, 0.9]
+				},
+				"head": {
+					"position": [0, -4.348, 1.587],
+					"scale": [1.2, 1.1, 1.1]
+				},
+				"leg0": {
+					"position": [0, -6.36, 0],
+					"scale": [0.91, 0.56, 0.91]
+				},
+				"leg1": {
+					"position": [0, -6.36, 0],
+					"scale": [0.91, 0.56, 0.91]
+				},
+				"leg2": {
+					"position": [0, -6.36, 0],
+					"scale": [0.91, 0.56, 0.91]
+				},
+				"leg3": {
+					"position": [0, -6.36, 0],
+					"scale": [0.91, 0.56, 0.91]
+				},
+				"neck": {
+					"position": [0, -5, 3]
+				}
+			}
+		},
+		"animation.lab.camel.setup.two_hump": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": ["90 - this", 0, 0],
+					"position": [0, -1, 0],
+					"scale": [1, 1, 1.1]
+				},
+				"chest1": {
+					"position": [0, -1, 0]
+				},
+				"chest2": {
+					"position": [0, -1, 0]
+				},
+				"leg0": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg1": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg2": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg3": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				}
+			}
+		},
+		"animation.lab.camel.setup.one_hump": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": ["90 - this", 0, 0],
+					"position": [0, -1, 0],
+					"scale": [1, 1, 1.1]
+				},
+				"chest1": {
+					"position": [0, -1, 0]
+				},
+				"chest2": {
+					"position": [0, -1, 0]
+				},
+				"leg0": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg1": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg2": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"leg3": {
+					"position": [0, 4, 0],
+					"scale": [1, 1.3, 1]
+				},
+				"hump": {
+					"position": [0, -7, 0],
+					"scale": [1, 1.5, 1.1]
+				},
+				"hump2": {
+					"scale": 0
+				},
+				"Saddle": {
+					"position": [0, 0.475, 7.575],
+					"scale": [1, 1.2, 1.2]
+				},
+				"Saddle2": {
+					"scale": 0
+				}
+			}
+		}
+	}
+}

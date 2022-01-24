@@ -1,0 +1,35 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.lab.horse": {
+			"initial_state" : "state_filter",
+			"states": {
+				"swim": {
+					"transitions": [{"state_filter": "!q.is_jumping"}],
+					"on_exit": [//"/execute @s ~ ~ ~ execute @e[type=minecraft:horse,r=1] ~ ~ ~ tp @s[tag=in_water] ~~~ true",
+						"/execute @s ~ ~ ~ /effect @e[r=1,type=horse,tag=in_water] levitation 2 5 true"]
+				},
+				"state_filter": {
+					"transitions": [
+						{"swim": "q.is_riding && q.is_jumping"}	
+					]
+				}
+			}
+		},
+		"controller.animation.lab.horse.in_water": {
+			"initial_state" : "state_filter",
+			"states": {
+				"swim": {
+					"transitions": [{"state_filter": "q.is_on_ground"}],
+					"on_entry": ["/tag @s add in_water"],
+					"on_exit": ["/tag @s remove in_water"]
+				},
+				"state_filter": {
+					"transitions": [
+						{"swim": "!q.is_on_ground && q.is_in_water"}	
+					]
+				}
+			}
+		}
+	}
+}

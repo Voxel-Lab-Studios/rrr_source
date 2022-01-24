@@ -1,0 +1,143 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:horse",
+      "min_engine_version": "1.17.10",
+      "materials": {
+        "default": "entity_alphatest",
+        "void": "slime_outer",//enchanted
+        "gear": "horse_leather_armor"
+      },
+      "textures": {
+        "base_black00": "textures/entity/horse2/black/horse_black00",
+        "base_black01": "textures/entity/horse2/black/horse_black01",
+        "base_black02": "textures/entity/horse2/black/horse_black02",
+        "base_black03": "textures/entity/horse2/black/horse_black03",
+        "base_black04": "textures/entity/horse2/black/horse_black04",
+        "base_brown00": "textures/entity/horse2/brown/horse_brown00",
+        "base_brown01": "textures/entity/horse2/brown/horse_brown01",
+        "base_brown02": "textures/entity/horse2/brown/horse_brown02",
+        "base_brown03": "textures/entity/horse2/brown/horse_brown03",
+        "base_brown04": "textures/entity/horse2/brown/horse_brown04",
+        "base_brown05": "textures/entity/horse2/brown/horse_brown05",
+        "base_chestnut00": "textures/entity/horse2/chestnut/horse_chestnut00",
+        "base_chestnut01": "textures/entity/horse2/chestnut/horse_chestnut01",
+        "base_chestnut02": "textures/entity/horse2/chestnut/horse_chestnut02",
+        "base_chestnut03": "textures/entity/horse2/chestnut/horse_chestnut03",
+        "base_chestnut04": "textures/entity/horse2/chestnut/horse_chestnut04",
+        "base_creamy00": "textures/entity/horse2/creamy/horse_creamy00",
+        "base_creamy01": "textures/entity/horse2/creamy/horse_creamy01",
+        "base_creamy02": "textures/entity/horse2/creamy/horse_creamy02",
+        "base_creamy03": "textures/entity/horse2/creamy/horse_creamy03",
+        "base_creamy04": "textures/entity/horse2/creamy/horse_creamy04",
+        "base_darkbrown00": "textures/entity/horse2/dark_brown/horse_darkbrown00",
+        "base_darkbrown01": "textures/entity/horse2/dark_brown/horse_darkbrown01",
+        "base_darkbrown02": "textures/entity/horse2/dark_brown/horse_darkbrown02",
+        "base_darkbrown03": "textures/entity/horse2/dark_brown/horse_darkbrown03",
+        "base_darkbrown04": "textures/entity/horse2/dark_brown/horse_darkbrown04",
+        "base_darkbrown05": "textures/entity/horse2/dark_brown/horse_darkbrown05",
+        "base_gray00": "textures/entity/horse2/gray/horse_gray00",
+        "base_gray01": "textures/entity/horse2/gray/horse_gray01",
+        "base_gray02": "textures/entity/horse2/gray/horse_gray02",
+        "base_gray03": "textures/entity/horse2/gray/horse_gray03",
+        "base_gray04": "textures/entity/horse2/gray/horse_gray04",
+        "base_gray05": "textures/entity/horse2/gray/horse_gray05",
+        "base_white00": "textures/entity/horse2/white/horse_white00",
+        "base_white01": "textures/entity/horse2/white/horse_white01",
+        "base_white02": "textures/entity/horse2/white/horse_white02",
+        "base_white03": "textures/entity/horse2/white/horse_white03",
+        "base_white04": "textures/entity/horse2/white/horse_white04",
+        "base_white05": "textures/entity/horse2/white/horse_white05",
+        "base_white06": "textures/entity/horse2/white/horse_white06",//Zebra
+        "base_white07": "textures/entity/horse2/white/horse_white07",//Zebra
+        "base_ender": "textures/entity/horse2/special/horse_ender",
+        "base_shadow": "textures/entity/horse2/special/horse_shadow",
+        "base_skeleton": "textures/entity/horse2/special/horse_skeleton",
+        "base_unicorn": "textures/entity/horse2/special/horse_unicorn",
+        "base_void": "textures/entity/horse2/special/horse_void",
+        "base_zombie": "textures/entity/horse2/special/horse_zombie",
+        "base_magma00": "textures/entity/horse2/magma/horse_magma00",
+        "base_magma01": "textures/entity/horse2/magma/horse_magma01",
+        "base_magma02": "textures/entity/horse2/magma/horse_magma02",
+
+        "armor_none": "textures/entity/horse2/armor/horse_armor_none",
+        "armor_leather": "textures/entity/horse2/armor/horse_armor_leather",
+        "armor_iron": "textures/entity/horse2/armor/horse_armor_iron",
+        "armor_gold": "textures/entity/horse2/armor/horse_armor_gold",
+        "armor_diamond": "textures/entity/horse2/armor/horse_armor_diamond",
+
+        "gear_default": "textures/entity/horse2/gear/default",
+        "gear_aqua": "textures/entity/horse2/gear/aqua",
+        "gear_black": "textures/entity/horse2/gear/black",
+        "gear_blue": "textures/entity/horse2/gear/blue",
+        "gear_brown": "textures/entity/horse2/gear/brown",
+        "gear_dark_aqua": "textures/entity/horse2/gear/dark_aqua",
+        "gear_dark_blue": "textures/entity/horse2/gear/dark_blue",
+        "gear_dark_green": "textures/entity/horse2/gear/dark_green",
+        "gear_dark_red": "textures/entity/horse2/gear/dark_red",
+        "gear_gold": "textures/entity/horse2/gear/gold",
+        "gear_gray": "textures/entity/horse2/gear/gray",
+        "gear_green": "textures/entity/horse2/gear/green",
+        "gear_light_gray": "textures/entity/horse2/gear/light_gray",
+        "gear_light_purple": "textures/entity/horse2/gear/light_purple",
+        "gear_purple": "textures/entity/horse2/gear/purple",
+        "gear_red": "textures/entity/horse2/gear/red",
+        "gear_white": "textures/entity/horse2/gear/white",
+        "gear_yellow": "textures/entity/horse2/gear/yellow"
+      },
+      "geometry": {
+        "default": "geometry.lab.horse"
+      },
+      "animations": {
+        "baby_transform": "animation.horse.v3.baby_transform",
+        "look_at_player": "animation.horse.v3.look_at_player",
+        "walk": "animation.horse.v3.walk",
+        "eat": "animation.horse.v3.eat",
+        "rear": "animation.horse.v3.rear",
+        "tail": "animation.horse.v3.tail",
+        "sit": "animation.lab.horse.sit",
+        "trail.rainbow": "animation.lab.horse.trail.rainbow",
+        "particle.c": "controller.animation.lab.horse_particle_effect.c"
+      },
+      "scripts": {
+        "initialize": [
+          "v.eat_anim = 0.0;"
+        ],
+        "pre_animation": [
+          "v.armor_texture_slot = q.armor_texture_slot(1);",
+          "v.gear_texture_slot = q.variant && query.is_tamed && !query.is_baby;",
+          "v.skin_texture_slot = q.skin_id;",
+          "v.eat_anim = math.clamp(v.eat_anim + (q.is_grazing ? ((1.0 - v.eat_anim) * 0.4 + 0.05) : -v.eat_anim * 0.4 - 0.05) * q.delta_time * 20.0, 0.0, 1.0);",
+          "v.head_x_rot = q.target_x_rotation + (q.modified_move_speed > 0.2 ? (math.cos(q.modified_distance_moved * 11.46) * 11.46 * q.modified_move_speed + q.modified_move_speed * 11.46) : 0.0);",
+          "v.inverse_max_stand_eat = (1.0 - math.max(v.stand_anim, v.eat_anim));",
+          "v.leg_stand_factor = math.cos((q.modified_distance_moved * 38.38) + 180.0);",
+          "v.leg_x_rot_anim = v.leg_stand_factor * 45.8 * q.modified_move_speed;"
+        ],
+        "animate": [
+          { "baby_transform": "q.is_baby" },
+          "walk",
+          "look_at_player",
+          "particle.c",
+          { "rear": "v.stand_anim > 0.0" },
+          { "eat": "!q.is_standing" },
+          { "tail": "v.shake_tail" },
+          { "sit": "q.is_sitting && !q.is_moving" }
+        ]
+      },
+      "render_controllers": [
+        {"controller.render.lab.horse": "q.skin_id != 44 && q.skin_id != 45"},
+        {"controller.render.lab.unicorn": "q.skin_id == 44"},
+        {"controller.render.lab.void": "q.skin_id == 45"}
+
+      ],
+      "particle_effects": {
+				"rainbow": "lab:rainbow_trail"
+			},
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 23
+      }
+    }
+  }
+}
