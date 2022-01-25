@@ -28,6 +28,58 @@
 		},
 		"lab:mega_torch": {
 			"textures": "textures/lab/items/torch"
+		},
+		
+		"lab:saddle.aqua": {
+			"textures": "textures/items/saddle/aqua"
+		},
+		"lab:saddle.black": {
+			"textures": "textures/items/saddle/black"
+		},
+		"lab:saddle.blue": {
+			"textures": "textures/items/saddle/blue"
+		},
+		"lab:saddle.brown": {
+			"textures": "textures/items/saddle/brown"
+		},
+		"lab:saddle.dark_aqua": {
+			"textures": "textures/items/saddle/dark_aqua"
+		},
+		"lab:saddle.dark_blue": {
+			"textures": "textures/items/saddle/dark_blue"
+		},
+		"lab:saddle.dark_gray": {
+			"textures": "textures/items/saddle/dark_gray"
+		},
+		"lab:saddle.dark_green": {
+			"textures": "textures/items/saddle/dark_green"
+		},
+		"lab:saddle.dark_red": {
+			"textures": "textures/items/saddle/dark_red"
+		},
+		"lab:saddle.gold": {
+			"textures": "textures/items/saddle/gold"
+		},
+		"lab:saddle.light_gray": {
+			"textures": "textures/items/saddle/light_gray"
+		},
+		"lab:saddle.light_purple": {
+			"textures": "textures/items/saddle/light_purple"
+		},
+		"lab:saddle.lime": {
+			"textures": "textures/items/saddle/lime"
+		},
+		"lab:saddle.purple": {
+			"textures": "textures/items/saddle/purple"
+		},
+		"lab:saddle.red": {
+			"textures": "textures/items/saddle/red"
+		},
+		"lab:saddle.white": {
+			"textures": "textures/items/saddle/white"
+		},
+		"lab:saddle.yellow": {
+			"textures": "textures/items/saddle/yellow"
 		}
 	}
 }

@@ -13,10 +13,21 @@
 			  ]
 			},
 			"animations": {
-			  "lab:horse": "controller.animation.lab.horse.in_water"
+			  "lab:horse": "controller.animation.lab.horse.in_water" //"speed_multiplier": 0.5,
 			}
     },
     "component_groups":{
+      "lab:is_deafult":{
+      },
+      "lab:is_undead":{},
+      "lab:is_mythic":{},
+      "lab:zombification_timer": {
+        "minecraft:is_shaking": {},
+        "minecraft:timer": {
+          "looping": false,"time": 5,
+          "time_down_event": {"event": "lab:zombify_event"}
+        }
+      },
       "lab:is_buoyant":{ // Add enviroment filter to switch the horses buoyant ability  
         "minecraft:buoyant": {
           "base_buoyancy": 0.5,"apply_gravity": true,"simulate_waves": true,
@@ -139,7 +150,7 @@
       "lab:type_white03": {"minecraft:skin_id": {"value": 36}},"lab:type_white04": {"minecraft:skin_id": {"value": 37}},
       "lab:type_white05": {"minecraft:skin_id": {"value": 38}},"lab:type_white06": {"minecraft:skin_id": {"value": 39}},
       "lab:type_white07": {"minecraft:skin_id": {"value": 40}},"lab:type_ender": {"minecraft:skin_id": {"value": 41}},
-      "lab:type_shadow": {"minecraft:skin_id": {"value": 42}},"lab:type_skeleton": {"minecraft:skin_id": {"value": 43}},
+      "lab:type_shadow": {"minecraft:skin_id": {"value": 42}},"lab:type_skeleton": {"minecraft:skin_id": {"value": 43},"minecraft:fire_immune": true},
       "lab:type_unicorn": {"minecraft:skin_id": {"value": 44}},"lab:type_void": {"minecraft:skin_id": {"value": 45}},
       "lab:type_zombie": {"minecraft:skin_id": {"value": 46}},"lab:type_magma": {"minecraft:skin_id": {"value": 47}},
       "lab:type_magma.f1": {"minecraft:skin_id": {"value": 48}},"lab:type_magma.f2": {"minecraft:skin_id": {"value": 49}},
@@ -163,7 +174,6 @@
       "minecraft:breathable": {"totalSupply": 15,"suffocateTime": 0},
       //Movement
       "minecraft:jump.static": {},
-      "minecraft:movement.generic": {},
       "minecraft:movement": {"value": {"range_min": 0.1125,"range_max": 0.3375}},
       "minecraft:horse.jump_strength": {"value": {"range_min": 0.4,"range_max": 2.0}},
       "minecraft:leashable": {"soft_distance": 4.0,"hard_distance": 6.0,"max_distance": 10.0},
@@ -174,13 +184,202 @@
           "can_break_doors": false,"can_open_doors": false,"can_open_iron_doors": false,"can_pass_doors": true,
           "avoid_water": true,"can_sink": true,"can_swim": true,"can_breach": false,"is_amphibious": false,"can_path_over_water": true
       },
+      "minecraft:movement.generic": {},
       //Filters
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "filters": [
+                {"test": "is_family","subject": "other","value": "lightning"},
+                { "test": "is_skin_id", "subject": "self","operator": "<=", "value": 43 },
+                {"test": "is_difficulty","operator": "!=","value": "peaceful"}
+              ],
+              "event": "lab:become_skeleton_event"
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {"filters": [
+              { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 44 },
+              { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 45 }]},
+            "deals_damage": false,"cause": "fall"
+          }
+        ]
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 1 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "light_blue_dye" }]},
+              "event": "lab:equip_gear_aqua_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 2 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "black_dye" }]},
+              "event": "lab:equip_gear_black_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 3 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "lapis_lazuli" }]},
+              "event": "lab:equip_gear_blue_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 4 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "brown_dye" }]},
+              "event": "lab:equip_gear_brown_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 5 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "cyan_dye"}]},
+              "event": "lab:equip_gear_dark_aqua_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 6 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "blue_dye" }]},
+              "event": "lab:equip_gear_dark_blue_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 7 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "green_dye" }]},
+              "event": "lab:equip_gear_dark_green_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 8 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "red_dye" }]},
+              "event": "lab:equip_gear_dark_red_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 9 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "orange_dye" }]},
+              "event": "lab:equip_gear_gold_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 10 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "gray_dye" }]},
+              "event": "lab:equip_gear_gray_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 11 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "lime_dye" }]},
+              "event": "lab:equip_gear_green_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 12 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "light_gray_dye" }]},
+              "event": "lab:equip_gear_light_gray_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 13 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "magenta_dye" }]},
+              "event": "lab:equip_gear_light_purple_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 14 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "purple_dye" }]},
+              "event": "lab:equip_gear_purple_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 15 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "pink_dye" }]},
+              "event": "lab:equip_gear_red_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 16 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "white_dye" }]},
+              "event": "lab:equip_gear_white_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_variant", "subject": "self","operator": "!=", "value": 17 },
+              { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_tamed" },
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "yellow_dye" }]},
+              "event": "lab:equip_gear_yellow_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          },
+          {
+            "on_interact": {"filters": {"all_of": [
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 43 },
+              { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 46 },
+              { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "rotten_flesh" }]},
+              "event": "lab:zombification_timer_event","target": "self"},
+              "hurt_item": 1,"swing": true,"play_sounds": "saddle","interact_text": "action.interact.saddle"
+          }
+        ]
+      },
       "minecraft:environment_sensor": {
         "triggers": [
           {
             "filters": {
               "all_of": [
                 { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_saddled"},
+                { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 43 },
                 {"test": "in_water","operator": "!=","value": true}
               ]
             },
@@ -190,6 +389,7 @@
             "filters": {
               "any_of": [
                 { "test": "has_component", "subject": "self", "operator": "==", "value": "minecraft:is_saddled"},
+                { "test": "is_skin_id", "subject": "self","operator": "!=", "value": 43 },
                 {"test": "in_water","operator": "==","value": true}
               ]
             },
@@ -232,7 +432,7 @@
       "minecraft:conditional_bandwidth_optimization": {},
       "minecraft:collision_box": {"width": 1.4,"height": 1.6},
       "minecraft:pushable": {"is_pushable": true,"is_pushable_by_piston": true},
-      //Behaviors
+      //Behavior
       "minecraft:behavior.float": {"priority": 0},
       "minecraft:behavior.stay_while_sitting": {"priority": 1},
       "minecraft:behavior.breed": {"priority": 2,"speed_multiplier": 1.0},
@@ -251,8 +451,8 @@
       "lab:manual_spawn": {"add": {"component_groups": ["lab:type_void"]}},//Overwiting define_type
       "minecraft:entity_spawned": {
           "randomize": [
-            {"weight": 95,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_adult","lab:gear_default"]}},
-            {"weight": 5,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_baby","lab:gear_default"]}}
+            {"weight": 95,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_adult","lab:gear_default","lab:is_deafult"]}},
+            {"weight": 5,"trigger": "lab:define_type_event","add": {"component_groups": ["lab:is_wild","lab:is_baby","lab:gear_default","lab:is_deafult"]}}
           ]
       },
       "minecraft:entity_born": {"add": {"component_groups": ["lab:is_wild","lab:is_baby","lab:gear_default"]}},
@@ -261,7 +461,6 @@
       "lab:on_tame_event": {"remove": {"component_groups": ["lab:is_wild"]},"add": {"component_groups": ["lab:is_tamed"]}},
       "lab:in_water": {"add": {"component_groups": ["lab:is_buoyant"]}},
       "lab:on_land": {"remove": {"component_groups": ["lab:is_buoyant"]}},
-      
       "lab:define_type_event": {//Link Skeleton & Zombie Through Events
         "sequence": [
           {
@@ -566,6 +765,37 @@
           ]
         },
         "add": {"component_groups": ["lab:gear_yellow"]}
+      },
+      "lab:become_skeleton_event": {
+        "remove": {
+          "component_groups": [
+            "lab:type_black00","lab:type_black01", "lab:type_black02", "lab:type_black03", "lab:type_black04", "lab:type_brown00", "lab:type_brown01",
+            "lab:type_brown02", "lab:type_brown03", "lab:type_brown04", "lab:type_brown05", "lab:type_chestnut00","lab:type_chestnut01", 
+            "lab:type_chestnut02", "lab:type_chestnut03", "lab:type_chestnut04","lab:type_creamy00", "lab:type_creamy01", "lab:type_creamy02",
+            "lab:type_creamy03","lab:type_creamy04","lab:type_darkbrown00", "lab:type_darkbrown01","lab:type_darkbrown02", "lab:type_darkbrown03", 
+            "lab:type_darkbrown04", "lab:type_darkbrown05", "lab:type_gray00", "lab:type_gray01", "lab:type_gray02","lab:type_gray03","lab:type_gray04",
+            "lab:type_gray05", "lab:type_white00","lab:type_white01", "lab:type_white02","lab:type_white03", "lab:type_white04", "lab:type_white05", "lab:type_white06", 
+            "lab:type_white07","lab:type_ender","lab:type_shadow","lab:type_unicorn","lab:type_void","lab:type_zombie","lab:is_deafult"
+          ]
+        },
+        "add": {"component_groups": ["lab:type_skeleton","lab:is_undead"]}
+      },
+      "lab:zombification_timer_event": {
+        "add": {"component_groups": ["lab:zombification_timer"]}
+      },
+      "lab:zombify_event": {
+        "remove": {
+          "component_groups": [
+            "lab:type_black00","lab:type_black01", "lab:type_black02", "lab:type_black03", "lab:type_black04", "lab:type_brown00", "lab:type_brown01",
+            "lab:type_brown02", "lab:type_brown03", "lab:type_brown04", "lab:type_brown05", "lab:type_chestnut00","lab:type_chestnut01", 
+            "lab:type_chestnut02", "lab:type_chestnut03", "lab:type_chestnut04","lab:type_creamy00", "lab:type_creamy01", "lab:type_creamy02",
+            "lab:type_creamy03","lab:type_creamy04","lab:type_darkbrown00", "lab:type_darkbrown01","lab:type_darkbrown02", "lab:type_darkbrown03", 
+            "lab:type_darkbrown04", "lab:type_darkbrown05", "lab:type_gray00", "lab:type_gray01", "lab:type_gray02","lab:type_gray03","lab:type_gray04",
+            "lab:type_gray05", "lab:type_white00","lab:type_white01", "lab:type_white02","lab:type_white03", "lab:type_white04", "lab:type_white05", "lab:type_white06", 
+            "lab:type_white07","lab:type_ender","lab:type_shadow","lab:type_skeleton","lab:type_unicorn","lab:type_void","lab:zombification_timer","lab:is_deafult"
+          ]
+        },
+        "add": {"component_groups": ["lab:type_zombie","lab:is_undead"]}
       }
     }
   }

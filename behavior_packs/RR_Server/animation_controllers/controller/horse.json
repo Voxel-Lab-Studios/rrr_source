@@ -6,7 +6,7 @@
 			"states": {
 				"swim": {
 					"transitions": [{"state_filter": "!q.is_jumping"}],
-					"on_exit": [//"/execute @s ~ ~ ~ execute @e[type=minecraft:horse,r=1] ~ ~ ~ tp @s[tag=in_water] ~~~ true",
+					"on_exit": ["/execute @s ~ ~ ~ execute @e[type=minecraft:horse,r=1] ~ ~ ~ tp @s[tag=in_water] ~~~ true",
 						"/execute @s ~ ~ ~ /effect @e[r=1,type=horse,tag=in_water] levitation 2 5 true"]
 				},
 				"state_filter": {
